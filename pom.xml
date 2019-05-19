@@ -19,12 +19,13 @@
 
 	<dependencies>
 		<dependency>
-		    <groupId>junit</groupId>
-		    <artifactId>junit</artifactId>
-		    <version>4.12</version>
-		    <scope>test</scope>
-		</dependency>	
-		<!-- Dependencies for Marathon: some oldies, but goodies - deliberately vulnerable -->
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- Dependencies for Marathon: some oldies, but goodies - deliberately 
+			vulnerable -->
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>jsp-api</artifactId>
@@ -72,13 +73,15 @@
 			<artifactId>commons-io</artifactId>
 			<version>2.6</version>
 		</dependency>
-		<!-- Dependency for deserialization vulnerabilities: ysoserial manual (Commons Collections gadget) -->
+		<!-- Dependency for deserialization vulnerabilities: ysoserial manual (Commons 
+			Collections gadget) -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-collections4</artifactId>
 			<version>4.0</version>
 		</dependency>
-		<!-- Dependency for deserialization vulnerabilities: ysoserial manual (BeanShell gadget) -->
+		<!-- Dependency for deserialization vulnerabilities: ysoserial manual (BeanShell 
+			gadget) -->
 		<dependency>
 			<groupId>org.beanshell</groupId>
 			<artifactId>bsh</artifactId>
@@ -118,6 +121,30 @@
 					<warName>marathon</warName>
 				</configuration>
 			</plugin>
+			
+			<!-- SpotBugs Static Analysis -->
+			<plugin>
+				<groupId>com.github.spotbugs</groupId>
+				<artifactId>spotbugs-maven-plugin</artifactId>
+				<version>3.1.11</version>
+				<configuration>
+					<effort>Max</effort>
+					<threshold>Low</threshold>
+					<failOnError>true</failOnError>
+					<!-- 
+					<includeFilterFile>${session.executionRootDirectory}/spotbugs-security-include.xml</includeFilterFile>
+					<excludeFilterFile>${session.executionRootDirectory}/spotbugs-security-exclude.xml</excludeFilterFile>
+					-->
+					<plugins>
+						<plugin>
+							<groupId>com.h3xstream.findsecbugs</groupId>
+							<artifactId>findsecbugs-plugin</artifactId>
+							<version>LATEST</version> <!-- Auto-update to the latest stable -->
+						</plugin>
+					</plugins>
+				</configuration>
+			</plugin>
+			
 		</plugins>
 	</build>
 </project>
