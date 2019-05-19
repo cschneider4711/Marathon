@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context useHttpOnly="false">
+    <!-- HSQL data source (using default credentials for demo purposes) -->
+    <Resource name="jdbc/MarathonDS" auth="Container"
+              type="javax.sql.DataSource" username="sa" password=""
+              driverClassName="org.hsqldb.jdbc.JDBCDriver"
+              url="jdbc:hsqldb:hsql://localhost/marathon"
+              maxActive="4" />
+    <!-- JAAS realm -->
+    <Realm className="org.apache.catalina.realm.JDBCRealm"
+           driverName="org.hsqldb.jdbc.JDBCDriver"
+           connectionURL="jdbc:hsqldb:hsql://localhost/marathon?user=sa&amp;password="
+		   userTable="app_user" userNameCol="username" userCredCol="password"
+		   userRoleTable="app_role" roleNameCol="rolename"/>
+    <Valve className="org.apache.catalina.authenticator.FormAuthenticator" 
+           changeSessionIdOnAuthentication="false"/>
+</Context>

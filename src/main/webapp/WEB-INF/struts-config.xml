@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+                               "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+<struts-config>
+	
+	<data-sources />
+	
+	<form-beans>
+        <form-bean name="SearchRunnerForm" type="demo.form.SearchRunnerForm" />
+        <form-bean name="CreateAccountForm" type="demo.form.CreateAccountForm" />
+        <form-bean name="RunnerForm" type="demo.form.RunnerForm" />
+        <form-bean name="RunnerPhotoForm" type="demo.form.RunnerPhotoForm" />
+        <form-bean name="RunnerPhotoImportForm" type="demo.form.RunnerPhotoImportForm" />
+        <form-bean name="RunnerAttendancesForm" type="demo.form.RunnerAttendancesForm" />
+        <form-bean name="ResultsForm" type="demo.form.ResultsForm" />
+        <form-bean name="ResultsImportForm" type="demo.form.ResultsImportForm" />
+        <form-bean name="ChangePasswordForm" type="demo.form.ChangePasswordForm" />
+	</form-beans>
+	
+	<global-exceptions />
+	
+	<global-forwards>
+      <forward name="index" path="/index.jsp" />
+      <forward name="confirm" path="/registerConfirm.jsp" />
+      <forward name="profile" path="/secured/profile.page" redirect="true" />
+      <forward name="showError" path="/showError.jsp" />
+	</global-forwards>
+	
+	<action-mappings>
+		<action path="/showMarathons" scope="request" type="demo.action.ShowMarathonsAction">
+          <forward name="showMarathons" path="/WEB-INF/pages/showMarathons.jsp" />
+		</action>
+
+        <action path="/showResults" scope="request" type="demo.action.ShowResultsAction">
+            <forward name="showResults" path="/WEB-INF/pages/showResults.jsp" />
+            <forward name="showChart" path="/WEB-INF/pages/showResultChart.jsp" />
+        </action>
+
+        <action path="/showRunner" scope="request" type="demo.action.ShowRunnerAction">
+            <forward name="showRunner" path="/WEB-INF/pages/showRunner.jsp" />
+        </action>
+
+		<action path="/searchRunner" name="SearchRunnerForm" scope="session"
+			type="demo.action.SearchRunnerAction"
+			validate="true" input="/showMarathons.page">
+			<forward name="showRunners" path="/WEB-INF/pages/showRunners.jsp" />
+		</action>
+		
+        <action path="/createAccount" name="CreateAccountForm" scope="session" 
+            type="demo.action.CreateAccountAction">
+        </action>
+        
+        
+        
+
+        <action path="/secured/profile" name="RunnerForm" scope="session" 
+            type="demo.action.ShowRunnerProfileAction" 
+            validate="false"
+            roles="runner,administrator">
+            <forward name="showRunnerProfile" path="/WEB-INF/pages/showRunnerProfile.jsp" />
+            <forward name="showAdminWelcome" path="/WEB-INF/pages/showAdminWelcome.jsp" />
+        </action>
+        <action path="/secured/updateRunnerProfile" name="RunnerForm" scope="session" 
+            type="demo.action.UpdateRunnerProfileAction"
+            validate="true" input="/secured/profile.page"
+            roles="runner,administrator">
+            <forward name="showRunnerProfile" path="/WEB-INF/pages/showRunnerProfile.jsp" />
+        </action>
+        
+        <action path="/secured/attendances" name="RunnerAttendancesForm" scope="session" 
+            type="demo.action.ShowRunnerAttendancesAction" 
+            validate="false"
+            roles="runner">
+            <forward name="showRunnerAttendances" path="/WEB-INF/pages/showRunnerAttendances.jsp" />
+        </action>
+        <action path="/secured/updateRunnerAttendances" name="RunnerAttendancesForm" scope="session" 
+            type="demo.action.UpdateRunnerAttendancesAction"
+            validate="true" input="/secured/attendances.page"
+            roles="runner">
+            <forward name="showRunnerAttendances" path="/WEB-INF/pages/showRunnerAttendances.jsp" />
+        </action>
+
+
+
+
+        <action path="/secured/editRunnerPhoto" name="RunnerPhotoForm" scope="request" 
+            type="demo.action.EditRunnerPhotoAction" 
+            validate="false"
+            roles="runner">
+            <forward name="editRunnerPhoto" path="/WEB-INF/pages/editRunnerPhoto.jsp" />
+        </action>
+        <action path="/secured/updateRunnerPhoto" name="RunnerPhotoForm" scope="request" 
+            type="demo.action.UpdateRunnerPhotoAction"
+            validate="true" input="/secured/editRunnerPhoto.page"
+            roles="runner">
+            <forward name="showRunnerProfile" path="/WEB-INF/pages/showRunnerProfile.jsp" />
+        </action>
+        <action path="/secured/importRunnerPhoto" name="RunnerPhotoImportForm" scope="request" 
+            type="demo.action.UpdateRunnerPhotoViaImportAction"
+            validate="true" input="/secured/editRunnerPhoto.page"
+            roles="runner">
+            <forward name="showRunnerProfile" path="/WEB-INF/pages/showRunnerProfile.jsp" />
+        </action>
+        
+        
+        
+        <action path="/admin/updateResults" name="ResultsForm" scope="request" 
+            type="demo.action.UpdateResultsAction"
+            validate="true" input="/showResults.page">
+            <!-- roles="administrator" not used here, since only secured via web.xml's path mappings -->
+            <forward name="showResults" path="/showResults.page" />
+        </action>
+
+
+
+        <action path="/admin/editResultsViaImport" name="ResultsImportForm" scope="request" 
+            type="demo.action.EditResultsViaImportAction" 
+            validate="false"
+            roles="administrator">
+            <forward name="editResultsViaImport" path="/WEB-INF/pages/editResultsViaImport.jsp" />
+        </action>
+        <action path="/admin/updateResultsViaImport" name="ResultsImportForm" scope="request" 
+            type="demo.action.UpdateResultsViaImportAction"
+            validate="true" input="/admin/editResultsViaImport.page"
+            roles="administrator">
+            <forward name="showResults" path="/showResults.page" />
+        </action>
+
+        <action path="/admin/deleteAllResults" scope="request" 
+            type="demo.action.DeleteAllResultsAction"
+            roles="administrator">
+            <forward name="showResults" path="/showResults.page" />
+        </action>
+
+
+
+
+        <action path="/secured/editPassword" name="ChangePasswordForm" scope="request" 
+            type="demo.action.ChangePasswordAction" 
+            validate="false"
+            roles="runner,administrator">
+            <forward name="changePassword" path="/WEB-INF/pages/changePassword.jsp" />
+        </action>
+        <action path="/secured/updatePassword" name="ChangePasswordForm" scope="request" 
+            type="demo.action.ChangePasswordAction"
+            validate="true" input="/secured/editPassword.page"
+            roles="runner,administrator">
+            <forward name="changePassword" path="/WEB-INF/pages/changePassword.jsp" />
+        </action>
+
+
+
+
+        <action path="/admin/loadDynamicRunnerDetails" scope="request" 
+        	type="demo.action.LoadDynamicRunnerDetailsAction"
+            roles="administrator">
+            <forward name="dynamicRunnerDetails" path="/WEB-INF/pages/dynamicRunnerDetails.jsp" />
+        </action>
+
+        <action path="/logout" scope="request" type="demo.action.LogoutAction">
+        </action>
+	</action-mappings>
+	
+	<controller />
+    
+    <message-resources parameter="demo/ApplicationResource"/>
+	
+	<plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+        <set-property property="pathnames" value="/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml"/>
+    </plug-in>
+</struts-config>

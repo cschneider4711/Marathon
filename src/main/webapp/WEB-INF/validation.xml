@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE form-validation PUBLIC
+          "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.1.3//EN"
+          "http://jakarta.apache.org/commons/dtds/validator_1_1_3.dtd">
+
+<form-validation>
+
+    <global>
+
+        <!-- An example global constant
+        <constant>
+            <constant-name>postalCode</constant-name>
+            <constant-value>^\d{5}\d*$</constant-value>
+        </constant>
+        end example-->
+
+    </global>
+
+    <formset>
+        <form name="SearchRunnerForm">
+            <field property="searchTerm" depends="required,minlength">
+                <arg0 key="SearchRunnerForm.searchTerm"/>
+                <arg1 key="${var:minlength}" name="minlength" resource="false"/>
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>4</var-value>
+                </var>
+             </field>
+        </form>
+    </formset>
+
+    <formset>
+        <form name="RunnerForm">
+            <field property="firstname" depends="required">
+                <arg0 key="RunnerForm.firstname"/>
+             </field>
+        </form>
+    </formset>
+
+
+
+    <!-- 
+    <formset>
+        <form name="CreateAccountForm">
+            <field property="username" depends="required">
+                <arg0 key="CreateAccountForm.username"/>
+            </field>
+            <field property="firstname" depends="required">
+                <arg0 key="CreateAccountForm.firstname"/>
+            </field>
+            <field property="lastname" depends="required">
+                <arg0 key="CreateAccountForm.lastname"/>
+            </field>
+            <field property="dateOfBirth" depends="required,mask">
+                <arg0 key="CreateAccountForm.dateOfBirth"/>
+	            <var>
+	                <var-name>mask</var-name>
+	                <var-value>^[0-9]{1,2}\.[0-9]{1,2}\.[0-9]{4}$</var-value>
+	            </var>
+            </field>
+            <field property="creditcardNumber" depends="required">
+                <arg0 key="CreateAccountForm.creditcardNumber"/>
+            </field>
+            <field property="password" depends="required">
+                <arg0 key="CreateAccountForm.password"/>
+            </field>
+        </form>
+    </formset>
+    -->
+
+
+    <!-- An example formset
+
+    <formset>
+        <form name="logonForm">
+            <field
+                property="username"
+                depends="required">
+                    <arg0 key="logonForm.username"/>
+             </field>
+         <field
+            property="password"
+            depends="required,mask">
+            <arg0 key="logonForm.password"/>
+            <var>
+                <var-name>mask</var-name>
+                <var-value>^[0-9a-zA-Z]*$</var-value>
+            </var>
+         </field>
+        </form>
+    </formset>
+
+    end example form -->
+
+    <!-- An example formset for another locale
+    <formset language="fr">
+
+        <constant>
+            <constant-name>postalCode</constant-name>
+            <constant-value>^[0-9a-zA-Z]*$</constant-value>
+        </constant>
+
+   </formset>
+   -->
+
+</form-validation>
