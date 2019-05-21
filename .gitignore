@@ -25,16 +25,19 @@ hs_err_pid*
 
 
 # allow for certain directories certain file types (for the local integration test folder)
+!integration/**/**/*.log
 !integration/**/**/*.jar
 !integration/**/**/*.war
 !integration/**/**/*.zip
 !integration/**/**/*.tar.gz
 
+!integration/**/**/**/*.log
 !integration/**/**/**/*.jar
 !integration/**/**/**/*.war
 !integration/**/**/**/*.zip
 !integration/**/**/**/*.tar.gz
 
+!integration/**/**/**/**/*.log
 !integration/**/**/**/**/*.jar
 !integration/**/**/**/**/*.war
 !integration/**/**/**/**/*.zip
