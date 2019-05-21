@@ -1,5 +1,6 @@
 # deploy to local tomcat
-cp ../target/marathon.war web/tomcat-port-9090/webapps
+mkdir -p web/tomcat-port-9090/webapps
+cp ../target/marathon.war web/tomcat-port-9090/webapps/.
 
 # ensure the application has all their technical requirements met (here for photo scanning and display)
 mkdir -p /root/marathonImages
