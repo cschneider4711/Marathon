@@ -14,5 +14,6 @@ cd db/hsqldb/bin/
 sleep 2
 cd ../../../
 cd web/tomcat-port-9090/bin/
+unset CATALINA_HOME
 ./startup.sh
 cd ../../../
