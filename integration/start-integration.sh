@@ -3,10 +3,10 @@ mkdir -p web/tomcat-port-9090/webapps
 cp ../target/marathon.war web/tomcat-port-9090/webapps/.
 
 # ensure the application has all their technical requirements met (here for photo scanning and display)
-mkdir -p /root/marathonImages
-mkdir -p /root/marathonScripts
-cp ../src/main/java/demo/util/default.png /root/marathonImages/default.png
-cp ../src/main/java/demo/antivirus/scanFile.sh /root/marathonScripts/scanFile.sh
+mkdir -p ~/marathonImages
+mkdir -p ~/marathonScripts
+cp ../src/main/java/demo/util/default.png ~/marathonImages/default.png
+cp ../src/main/java/demo/antivirus/scanFile.sh ~/marathonScripts/scanFile.sh
 chmod 755 ../src/main/java/demo/antivirus/scanFile.sh
 
 # start the local database and tomat
