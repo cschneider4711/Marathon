@@ -7,7 +7,7 @@ mkdir -p ~/marathonImages
 mkdir -p ~/marathonScripts
 cp ../src/main/java/demo/util/default.png ~/marathonImages/default.png
 cp ../src/main/java/demo/antivirus/scanFile.sh ~/marathonScripts/scanFile.sh
-chmod 755 ../src/main/java/demo/antivirus/scanFile.sh
+chmod 755 ~/marathonScripts/scanFile.sh
 
 # start the local database and tomat
 cd db/hsqldb/bin/
