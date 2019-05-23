@@ -41,12 +41,13 @@
 <enabled>true</enabled>
 </p20019>
 <p30001>
-<enabled>true</enabled>
-<level>HIGH</level>
+<enabled>false</enabled>
+<level>OFF</level>
+<strength>DEFAULT</strength>
 </p30001>
 <p30002>
-<enabled>true</enabled>
-<level>HIGH</level>
+<enabled>false</enabled>
+<level>OFF</level>
 </p30002>
 <p40003>
 <enabled>true</enabled>
