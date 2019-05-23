@@ -17,6 +17,7 @@ unzip -o DB-BACKUP.ZIP
 sleep 2
 cd ../../../
 mkdir -p web/tomcat-port-9090/logs
+rm -f web/tomcat-port-9090/logs/*
 cd web/tomcat-port-9090/bin/
 # unset CATALINA_HOME to not interfere with other tomcats running
 unset CATALINA_HOME
