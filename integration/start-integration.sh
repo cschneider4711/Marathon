@@ -11,13 +11,14 @@ chmod 755 ~/marathonScripts/scanFile.sh
 
 # start the local database and tomat
 cd db/hsqldb/bin/
-pwd
+# restore test data set (nullstellung)
+unzip -o DB-BACKUP.ZIP
 ./startMarathonDB.sh &
 sleep 2
 cd ../../../
 mkdir -p web/tomcat-port-9090/logs
 cd web/tomcat-port-9090/bin/
+# unset CATALINA_HOME to not interfere with other tomcats running
 unset CATALINA_HOME
-pwd
 ./startup.sh
 cd ../../../
