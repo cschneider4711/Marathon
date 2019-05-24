@@ -3,7 +3,7 @@
   "name": "Path Traversal",
   "cweid": "22",
   "wascid": "33",
-  "uri": "^http:\\/\\/localhost:9090\\/marathon\\/secured\\/updateRunnerProfile\\.page$",
+  "uri": "^http://localhost:9090/marathon/secured/updateRunnerProfile.page$",
   "method": "POST",
   "param": "creditcardNumber",
   "attack": "updateRunnerProfile.page"
