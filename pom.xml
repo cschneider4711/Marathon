@@ -11,7 +11,7 @@
 
 	<repositories>
 		<repository>
-			<id>batrik-repo</id>
+			<id>batik-repo</id>
 			<name>Batik Repo</name>
 			<url>http://repository.openmindonline.it</url>
 		</repository>
@@ -133,8 +133,8 @@
 					<failOnError>true</failOnError>
 					<!-- 
 					<includeFilterFile>${session.executionRootDirectory}/spotbugs-security-include.xml</includeFilterFile>
-					<excludeFilterFile>${session.executionRootDirectory}/spotbugs-security-exclude.xml</excludeFilterFile>
 					-->
+					<excludeFilterFile>${session.executionRootDirectory}/spotbugs-security-exclude.xml</excludeFilterFile>
 					<plugins>
 						<plugin>
 							<groupId>com.h3xstream.findsecbugs</groupId>
