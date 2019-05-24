@@ -1,7 +1,8 @@
 [
  {
+  "name": "Path Traversal",
   "uri": ".*",
   "method": "POST",
-  "param": "creditcardNumber",
+  "param": "creditcardNumber"
  }
 ]
