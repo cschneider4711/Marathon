@@ -3,6 +3,7 @@
   "name": "Path Traversal",
   "cweid": "22",
   "wascid": "33",
+  "uri": ".",
   "method": "POST",
   "param": "creditcardNumber"
  }
