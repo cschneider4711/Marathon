@@ -1,0 +1,7 @@
+<FindBugsFilter>
+  <Match>
+    <Class name="demo.filter.AccessLogFilter" />
+    <Method name="init" />
+    <Bug pattern="PATH_TRAVERSAL_IN" />
+  </Match>
+</FindBugsFilter>
