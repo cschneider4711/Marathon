@@ -1,7 +1,7 @@
 [
  {
   "name": "Path Traversal",
-  "uri": "updateRunnerProfile.page",
+  "uri": ".*updateRunnerProfile.*",
   "method": "POST",
   "param": "creditcardNumber"
  }
