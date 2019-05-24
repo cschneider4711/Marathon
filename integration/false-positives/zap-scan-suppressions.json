@@ -1,9 +1,7 @@
 [
  {
   "name": "Path Traversal",
-  "cweid": "22",
-  "wascid": "33",
-  "uri": "updateRunnerProfile\\.page",
+  "uri": "updateRunnerProfile.page",
   "method": "POST",
   "param": "creditcardNumber"
  }
