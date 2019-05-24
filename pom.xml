@@ -6,7 +6,7 @@
 	<artifactId>marathon</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Marathon Reloaded Webapp</name>
+	<name>Marathon Training Demo WebApp</name>
 
 
 	<repositories>
@@ -17,6 +17,10 @@
 		</repository>
 	</repositories>
 
+	<properties>
+		<spotbugs.suppression.filename>spotbugs-suppressions.xml</spotbugs.suppression.filename>
+	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -24,8 +28,7 @@
 			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
-		<!-- Dependencies for Marathon: some oldies, but goodies - deliberately 
-			vulnerable -->
+		<!-- Dependencies for Marathon: some oldies, but goodies - deliberately vulnerable -->
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>jsp-api</artifactId>
@@ -134,7 +137,7 @@
 					<!-- 
 					<includeFilterFile>${session.executionRootDirectory}/spotbugs-security-include.xml</includeFilterFile>
 					-->
-					<excludeFilterFile>${session.executionRootDirectory}/integration/false-positives/spotbugs-suppressions.xml</excludeFilterFile>
+					<excludeFilterFile>${session.executionRootDirectory}/integration/false-positives/${spotbugs.suppression.filename}</excludeFilterFile>
 					<plugins>
 						<plugin>
 							<groupId>com.h3xstream.findsecbugs</groupId>
