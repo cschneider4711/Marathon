@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.2.xsd">
+   <suppress>
+      <notes>Suppressed as the tomcat is not used in production (just during local integration test run)</notes>
+      <filePath regex="true">.*bootstrap\.jar</filePath>
+      <cve>CVE-2017-6056</cve>
+   </suppress>
+   <suppress>
+      <notes>Suppressed as the tomcat is not used in production (just during local integration test run)</notes>
+      <filePath regex="true">.*bootstrap\.jar</filePath>
+      <cve>CVE-2016-6325</cve>
+   </suppress>
+   <suppress>
+      <notes>Suppressed as the tomcat is not used in production (just during local integration test run)</notes>
+      <filePath regex="true">.*bootstrap\.jar</filePath>
+      <cve>CVE-2016-5425</cve>
+   </suppress>
+</suppressions>
