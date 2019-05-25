@@ -1,0 +1,1 @@
+dependencyCheckPublisher pattern: 'dependency-check-report.xml', unstableTotalHigh: '1'

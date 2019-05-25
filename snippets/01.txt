@@ -1,0 +1,15 @@
+   stage("Dependency Check") { 
+       step([$class: 'DependencyCheckBuilder', 
+       datadir: '', 
+       hintsFile: '', 
+       includeCsvReports: false, 
+       includeHtmlReports: true, 
+       includeJsonReports: false, 
+       isAutoupdateDisabled: false, 
+       outdir: '', 
+       scanpath: '', 
+       skipOnScmChange: false, 
+       skipOnUpstreamChange: false, 
+       suppressionFile: '', 
+       zipExtensions: '']) 
+   }
