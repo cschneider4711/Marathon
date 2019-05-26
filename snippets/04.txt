@@ -1,0 +1,3 @@
+      def spotbugs = scanForIssues tool: [$class: 'SpotBugs'], pattern: '**/target/spotbugsXml.xml'
+      publishIssues issues:[spotbugs]
+      publishIssues id:'analysis', name:'SAST Issues', issues:[spotbugs] 
