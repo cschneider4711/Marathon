@@ -1,0 +1,7 @@
+      sh 'curl -s http://localhost:7777/JSON/ascan/action/removeScanPolicy/?zapapiformat=JSON\\&scanPolicyName=marathon-policy'
+
+      sh 'curl -s http://localhost:7777/JSON/ascan/action/importScanPolicy/?zapapiformat=JSON\\&path=/root/.jenkins/workspace/marathon/integration/policies/zap/marathon-policy.policy'
+
+      sh 'curl -s http://localhost:7777/JSON/ascan/action/setOptionDefaultPolicy/?zapapiformat=JSON\\&String=marathon-policy'
+
+      sh 'curl -s http://localhost:7777/JSON/ascan/action/setOptionAttackPolicy/?zapapiformat=JSON\\&String=marathon-policy'

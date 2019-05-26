@@ -1,0 +1,4 @@
+      sh 'cp integration/false-positives/zap-scan-suppressions.json ../../jobs/marathon/builds/$BUILD_NUMBER/.'
+      script {
+          archiveZap(failAllAlerts: 0, failHighAlerts: 1, failMediumAlerts: 0, failLowAlerts: 0, falsePositivesFilePath: 'zap-scan-suppressions.json')
+      } 

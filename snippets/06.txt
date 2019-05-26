@@ -1,0 +1,22 @@
+   stage('Dynamic Scan Execution') {
+      script {
+          startZap(host: "127.0.0.1", port: 7777, timeout:600, zapHome: "/opt/zap", allowedHosts:['localhost'])
+      }  
+      sh 'sleep 3; curl -s http://localhost:7777/JSON/context/action/newContext/?zapapiformat=JSON\\&contextName=marathon'
+      sh 'curl -s http://localhost:7777/JSON/context/action/includeInContext/?zapapiformat=JSON\\&contextName=marathon\\&regex=http://localhost:9090/.*'
+      sh 'curl -s http://localhost:7777/JSON/core/action/setMode/?zapapiformat=JSON\\&mode=attack'
+      sh 'curl -s http://localhost:7777/JSON/script/action/load/?zapapiformat=JSON\\&scriptName=marathon-runner-workflow\\&scriptType=standalone\\&scriptEngine=Mozilla+Zest\\&fileName=/root/.jenkins/workspace/marathon/zest/marathon-local-integration-port-9090.zst\\&scriptDescription=\\&charset='
+      sh 'curl -s http://localhost:7777/JSON/script/action/runStandAloneScript/?zapapiformat=JSON\\&scriptName=marathon-runner-workflow'
+      // checking for active scan finish      
+      for (int i = 0; i < 20; i++) {
+        sh 'sleep 30'
+        def ATTACK_MODE_QUEUE = sh ( script: "curl -s http://localhost:7777/JSON/ascan/view/attackModeQueue/?zapapiformat=JSON", returnStdout: true )
+        echo "Checking queue size if active scan has finished: ${ATTACK_MODE_QUEUE}"
+        if (ATTACK_MODE_QUEUE == '{"attackModeQueue":"-1"}') {
+            echo "Active scan has finished"
+            sh 'curl -s http://localhost:7777/JSON/core/view/alertsSummary/?zapapiformat=JSON\\&baseurl='
+            break;
+        }
+      }
+   }
+

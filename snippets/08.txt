@@ -1,0 +1,1 @@
+sh 'echo "Just in case and ignore the exit code of `curl -s http://localhost:7777/JSON/core/action/shutdown/`"'

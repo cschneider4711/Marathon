@@ -1,0 +1,9 @@
+   stage('Integration Test Startup') {
+      sh 'cd integration; ./start-integration.sh' 
+   }
+   stage('Dynamic Scan Execution') {
+      sh 'sleep 5; curl http://localhost:9090/marathon/; sleep 5'
+   }
+   stage('Integration Test Shutdown') {
+      sh 'cd integration; ./stop-integration.sh' 
+   }
