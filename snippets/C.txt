@@ -1,0 +1,1 @@
+recordIssues tool: spotBugs(), healthy: 1, unhealthy: 7, minimumSeverity: 'HIGH', qualityGates: [[threshold: 3, type: 'TOTAL_HIGH', unstable: true]]

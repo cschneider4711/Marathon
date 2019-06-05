@@ -1,0 +1,1 @@
+recordIssues tool: spotBugs(), healthy: 5, unhealthy: 30, minimumSeverity: 'HIGH'
