@@ -124,7 +124,26 @@
 					<warName>marathon</warName>
 				</configuration>
 			</plugin>
-			
+
+			<!-- pre-compile any JSPs for SpotBugs analysis -->
+                        <plugin>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-jspc-maven-plugin</artifactId>
+				<version>9.4.18.v20190429</version>
+                	        <executions>
+            	                	<execution>
+                                		<id>jspc</id>
+                        	        	<goals>
+                 	   	                <goal>jspc</goal>
+                                		</goals>
+                        	        	<configuration>
+                  	  	                <suppressSmap>false</suppressSmap>
+                        	        	    <useProvidedScope>true</useProvidedScope>
+                        		        </configuration>
+                	  	          </execution>
+				</executions>
+			</plugin>
+
 			<!-- SpotBugs Static Analysis -->
 			<plugin>
 				<groupId>com.github.spotbugs</groupId>
