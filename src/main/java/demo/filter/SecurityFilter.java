@@ -16,6 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import java.util.regex.*;
+
+
 /**
  * Servlet Filter implementation class SecurityFilter
  */
@@ -27,6 +30,7 @@ public class SecurityFilter implements Filter {
 	private static final String CHECK_STRING = "CHECK_STRING";
 	private static final String CHECK_STRING_PREVIOUS = "CHECK_STRING_PREVIOUS";
 	
+	private Pattern validationPattern = null;
 	
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
@@ -35,6 +39,10 @@ public class SecurityFilter implements Filter {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 
+		if (!isValidRequest(httpRequest)) {
+			return;
+		}
+		
 		String paramValues = logRequestParams(httpRequest);
 		checkTime(httpRequest, paramValues);
 		addAntiCacheHeader(httpRequest, httpResponse);
@@ -77,6 +85,26 @@ public class SecurityFilter implements Filter {
 		}
 	}
 
+
+	private boolean isValidRequest(HttpServletRequest httpRequest) {
+		try {
+			if (httpRequest != null && validationPattern != null) {
+				Enumeration<String> paramNames = httpRequest.getParameterNames();
+				while (paramNames.hasMoreElements()) {
+					String name = paramNames.nextElement();
+					String value = httpRequest.getParameter(name);
+					Matcher matcher = validationPattern.matcher(value);
+					if (matcher.find()) {
+						System.out.println("REQUEST VALIDATION FAIL: "+value);
+						return false;
+					}
+				}
+			}
+		} catch (Exception e) {
+			System.err.println("Unable to perform validation check: "+e);
+		}
+		return true;
+	}
 
 
 	// also bad: too excessive logging (logs also sensitive data etc.)
@@ -127,9 +155,16 @@ public class SecurityFilter implements Filter {
 		Locale.setDefault(Locale.ENGLISH);
 		config.getServletContext().setAttribute(CHECK_STRING, "");
 		config.getServletContext().setAttribute(CHECK_STRING_PREVIOUS, "");
+
 		String logPrefix = System.getenv("MARATHON_LOG_PREFIX");
 		if (logPrefix != null && logPrefix.trim().length() > 0 && !logPrefix.equals("OFF")) {
 			System.out.println(logPrefix+" INITIALIZED");
+		}
+
+		String regEx = System.getenv("VALIDATION_REGEX");
+		if (regEx != null && regEx.trim().length() > 0) {
+			System.out.println("REGEX VALIDATION: "+regEx);
+			validationPattern = Pattern.compile(regEx);
 		}
 	}
 
