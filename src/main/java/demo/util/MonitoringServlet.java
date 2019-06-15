@@ -39,7 +39,7 @@ public class MonitoringServlet extends HttpServlet {
 			writer.println(super.getServletContext().getServerInfo());
 			writer.println("Path:");
 			writer.println(super.getServletContext().getRealPath("."));
-			writer.println("Database running:");
+			writer.println("Database running and with content:");
 			writer.println(DAOUtils.isAlive());
 		} else {
 			writer.println("Sorry, monitoring information only accessible to local clients coming from 127.0.0.1");

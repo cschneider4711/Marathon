@@ -26,7 +26,7 @@ public final class DAOUtils {
 		Connection connection = null;
 		try {
 			connection = DAOUtils.getConnection();
-			return connection.isValid(10);
+			return connection.isValid(10) && new RunnerDAO(connection).loadRunner(0) != null;
 		} catch (NamingException e) {
 			e.printStackTrace();
 			return false;
