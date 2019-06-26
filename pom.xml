@@ -6,7 +6,7 @@
 	<artifactId>marathon</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Marathon Training Demo WebApp</name>
+	<name>Marathon Vulnerable Training Application</name>
 
 
 	<repositories>
@@ -76,15 +76,13 @@
 			<artifactId>commons-io</artifactId>
 			<version>2.6</version>
 		</dependency>
-		<!-- Dependency for deserialization vulnerabilities: ysoserial manual (Commons 
-			Collections gadget) -->
+		<!-- Dependency for deserialization vulnerabilities: ysoserial manual (Commons Collections gadget) -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-collections4</artifactId>
 			<version>4.0</version>
 		</dependency>
-		<!-- Dependency for deserialization vulnerabilities: ysoserial manual (BeanShell 
-			gadget) -->
+		<!-- Dependency for deserialization vulnerabilities: ysoserial manual (BeanShell gadget) -->
 		<dependency>
 			<groupId>org.beanshell</groupId>
 			<artifactId>bsh</artifactId>
