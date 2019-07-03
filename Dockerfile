@@ -45,7 +45,8 @@ COPY --from=build /app/src/main/java/demo/util/default.png /home/marathon/marath
 RUN chmod 755 /home/marathon/marathonScripts/scanFile.sh
 
 RUN echo "cd /app/hsqldb/bin; ./startMarathonDB.sh &" >> /app/marathon.sh
-RUN echo "sleep 3; cd /usr/local/tomcat/bin; ./startup.sh; tail -f /usr/local/tomcat/logs/catalina.out" >> /app/marathon.sh
+#RUN echo "sleep 3; cd /usr/local/tomcat/bin; ./startup.sh; tail -f /usr/local/tomcat/logs/catalina.out" >> /app/marathon.sh
+RUN echo "sleep 3; cd /usr/local/tomcat/bin; ./catalina.sh jpda start; tail -f /usr/local/tomcat/logs/catalina.out" >> /app/marathon.sh
 RUN chmod 755 /app/marathon.sh
 
 # Tell docker that all future commands should run as the "marathon" user
@@ -53,5 +54,6 @@ RUN chown -R marathon:marathon /app /usr/local/tomcat /home/marathon
 USER marathon
 
 EXPOSE 8080
+EXPOSE 8000
 HEALTHCHECK CMD curl --silent --fail http://localhost:8080/marathon/monitoring | grep true || exit 1
 CMD /app/marathon.sh
