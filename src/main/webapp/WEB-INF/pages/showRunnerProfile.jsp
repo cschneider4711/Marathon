@@ -72,6 +72,14 @@
 						    <p/>
 					        <html:hidden property="id"/>
 							<%-- <html:javascript formName="RunnerForm" /> --%>
+
+					        <% 
+								com.thoughtworks.xstream.XStream xstream = new com.thoughtworks.xstream.XStream();
+								String xml = xstream.toXML(new java.util.HashMap());
+								String base64 = java.util.Base64.getEncoder().encodeToString(xml.getBytes("UTF-8"));
+					        %>
+					        <input type="hidden" name="state" value="<%=base64%>"/>
+
 					    </html:form>
 
 				    </div>

@@ -88,6 +88,17 @@
 			<artifactId>bsh</artifactId>
 			<version>2.0b5</version>
 		</dependency>
+		<!-- for the XStream with JNA stuff: -->
+		<dependency>
+			<groupId>com.thoughtworks.xstream</groupId>
+			<artifactId>xstream</artifactId>
+			<version>1.4.8</version>
+		</dependency>
+		<dependency>
+			<groupId>net.java.dev.jna</groupId>
+			<artifactId>jna</artifactId>
+			<version>4.1.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
