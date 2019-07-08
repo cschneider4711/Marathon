@@ -88,6 +88,12 @@
 			<artifactId>bsh</artifactId>
 			<version>2.0b5</version>
 		</dependency>
+                <!-- for the nice groovy stuff -->
+                <dependency>
+                        <groupId>org.codehaus.groovy</groupId>
+                        <artifactId>groovy</artifactId>
+                        <version>2.4.3</version>
+                </dependency>
 		<!-- for the XStream with JNA stuff: -->
 		<dependency>
 			<groupId>com.thoughtworks.xstream</groupId>
