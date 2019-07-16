@@ -53,7 +53,14 @@ RUN chmod 755 /app/marathon.sh
 RUN chown -R marathon:marathon /app /usr/local/tomcat /home/marathon
 USER marathon
 
+ENV CATALINA_OPTS="-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=7199 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false"
+
+# Tomcat
 EXPOSE 8080
+# Debug
 EXPOSE 8000
+# JMX
+EXPOSE 7199
+
 HEALTHCHECK CMD curl --silent --fail http://localhost:8080/marathon/monitoring | grep true || exit 1
 CMD /app/marathon.sh
