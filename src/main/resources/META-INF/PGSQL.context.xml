@@ -6,12 +6,12 @@
 	    <Resource name="jdbc/MarathonDS" auth="Container"
 	              type="javax.sql.DataSource" username="SA4" password="SA4"
 	              driverClassName="org.postgresql.Driver"
-	              url="jdbc:postgresql://postgres-database-host:5432/marathon"
+	              url="jdbc:postgresql://postgres-backend:5432/marathon"
         	      maxActive="8" />
         	      
 	    <Realm className="org.apache.catalina.realm.JDBCRealm"
 	           driverName="org.postgresql.Driver"
-	           connectionURL="jdbc:postgresql://postgres-database-host:5432/marathon?user=SA4&amp;password=SA4"
+	           connectionURL="jdbc:postgresql://postgres-backend:5432/marathon?user=SA4&amp;password=SA4"
 			   userTable="app_user" userNameCol="username" userCredCol="password"
 			   userRoleTable="app_role" roleNameCol="rolename"/>
 			   
