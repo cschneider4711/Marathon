@@ -8,6 +8,15 @@
   <display-name>marathon</display-name>
 
 
+  <context-param>
+    <param-name>resteasy.resources</param-name>
+    <param-value>demo.service.MarathonService</param-value>
+  </context-param>
+  <context-param>
+    <param-name>resteasy.servlet.mapping.prefix</param-name>
+    <param-value>/rest</param-value>
+  </context-param>
+
 
   <filter>
     <description>Security Filter</description>
@@ -25,8 +34,26 @@
   <listener>
     <listener-class>demo.util.SessionListener</listener-class>
   </listener>
-  
-  
+
+  <listener>
+    <listener-class>
+      org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap
+    </listener-class>
+  </listener>
+
+  <servlet>
+    <servlet-name>resteasy-servlet</servlet-name>
+    <servlet-class>
+      org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher
+    </servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>resteasy-servlet</servlet-name>
+    <url-pattern>/rest/*</url-pattern>
+  </servlet-mapping>
+
+
   <servlet>
     <servlet-name>action</servlet-name>
     <servlet-class>org.apache.struts.action.ActionServlet</servlet-class>

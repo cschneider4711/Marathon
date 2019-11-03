@@ -15,9 +15,14 @@
 			<name>Batik Repo</name>
 			<url>http://repository.openmindonline.it</url>
 		</repository>
+		<repository>
+			<id>JBoss repository</id>
+			<url>https://repository.jboss.org/nexus/content/groups/public-jboss/</url>
+		</repository>
 	</repositories>
 
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spotbugs.suppression.filename>spotbugs-suppressions.xml</spotbugs.suppression.filename>
 	</properties>
 
@@ -88,12 +93,33 @@
 			<artifactId>bsh</artifactId>
 			<version>2.0b5</version>
 		</dependency>
-                <!-- for the nice groovy stuff -->
-                <dependency>
-                        <groupId>org.codehaus.groovy</groupId>
-                        <artifactId>groovy</artifactId>
-                        <version>2.4.3</version>
-                </dependency>
+		<!-- for the nice groovy stuff -->
+		<dependency>
+				<groupId>org.codehaus.groovy</groupId>
+				<artifactId>groovy</artifactId>
+				<version>2.4.3</version>
+		</dependency>
+		<!-- for the nice Jackson Databind stuff -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.8.8</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jaxrs</artifactId>
+			<version>2.2.1.GA</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jackson-provider</artifactId>
+			<version>2.2.1.GA</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jaxb-provider</artifactId>
+			<version>2.2.1.GA</version>
+		</dependency>
 		<!-- for the XStream with JNA stuff: -->
 		<dependency>
 			<groupId>com.thoughtworks.xstream</groupId>
@@ -153,7 +179,7 @@
                                 		</goals>
                         	        	<configuration>
                   	  	                <suppressSmap>false</suppressSmap>
-                        	        	    <useProvidedScope>true</useProvidedScope>
+										<useProvidedScope>true</useProvidedScope>
                         		        </configuration>
                 	  	          </execution>
 				</executions>

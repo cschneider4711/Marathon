@@ -1,0 +1,37 @@
+POST http://localhost:8080/marathon/rest/runners/create
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{
+    "userName":   "foobar",
+    "password":   "foobar",
+    "firstName":  "Foo",
+    "lastName":   "Bar",
+    "street":     "Foo Street 1",
+    "zip":        "12345",
+    "city":        "Foo Town",
+    "creditcard":  "23523352235232353",
+    "dateOfBirth": "01.01.1970"
+}
+
+###
+
+POST http://localhost:8080/marathon/rest/runners/create
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/xml
+
+<runner>
+    <userName>foobar2</userName>
+    <password>foobar2</password>
+    <firstName>Foo 2</firstName>
+    <lastName>Bar 2</lastName>
+    <street>Foo Street 2</street>
+    <zip>12345</zip>
+    <city>Foo Town</city>
+    <creditcard>23523352235232353</creditcard>
+    <dateOfBirth>01.01.1970</dateOfBirth>
+</runner>
+
+###
