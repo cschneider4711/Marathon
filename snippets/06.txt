@@ -11,8 +11,9 @@
       for (int i = 0; i < 20; i++) {
         sh 'sleep 30'
         def ATTACK_MODE_QUEUE = sh ( script: "curl -s http://localhost:7777/JSON/ascan/view/attackModeQueue/?zapapiformat=JSON", returnStdout: true )
+        def ATTACK_MODE_QUEUE_JSON = readJSON text: ATTACK_MODE_QUEUE
         echo "Checking queue size if active scan has finished: ${ATTACK_MODE_QUEUE}"
-        if (ATTACK_MODE_QUEUE == '{"attackModeQueue":"-1"}') {
+        if (ATTACK_MODE_QUEUE_JSON.attackModeQueue == "-1") {
             echo "Active scan has finished"
             sh 'curl -s http://localhost:7777/JSON/core/view/alertsSummary/?zapapiformat=JSON\\&baseurl='
             break;
