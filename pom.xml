@@ -13,7 +13,7 @@
 		<repository>
 			<id>batik-repo</id>
 			<name>Batik Repo</name>
-			<url>http://repository.openmindonline.it</url>
+			<url>https://repository.openmindonline.it</url>
 		</repository>
 		<repository>
 			<id>JBoss repository</id>
