@@ -1,0 +1,21 @@
+name: SCA Scans
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  SCA-Scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Sources
+        uses: actions/checkout@v2
+      # https://github.com/marketplace/actions/anchore-container-scan
+      - name: Grype Dependency Scanner (Report)
+        id: scan
+        uses: anchore/scan-action@v3
+        with:
+          path: "."
+          acs-report-enable: true
+          fail-build: false
+
+      - name: Inspect Dependency SARIF Report
+        run: cat ${{ steps.scan.outputs.sarif }}
