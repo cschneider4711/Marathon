@@ -1,0 +1,13 @@
+name: Run Grype
+on: [push, pull_request]
+jobs:
+  grype:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Grype
+        run: |
+          wget -O /usr/local/bin/grype https://github.com/anchore/grype/releases/latest/download/grype-linux-amd64
+          chmod +x /usr/local/bin/grype
+      - name: Run Grype
+        run: grype -v
