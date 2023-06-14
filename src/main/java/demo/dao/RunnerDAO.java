@@ -174,5 +174,21 @@ public class RunnerDAO {
 			if (statement != null) statement.close();
 		}
 	}
-	
+
+	public List<Runner> getAllRunners() throws SQLException {
+		List<Runner> runners = new ArrayList<>();
+
+		PreparedStatement stmt = this.connection.prepareStatement("SELECT id, username, firstname, lastname, street, zip, "
+				+"city, date_of_birth, creditcard_number, photo_name FROM runner");
+		ResultSet rs = stmt.executeQuery();
+
+		while(rs.next()) {
+			Runner runner = extractRunner(rs, "", true);
+			runners.add(runner);
+		}
+
+		return runners;
+	}
+
+
 }

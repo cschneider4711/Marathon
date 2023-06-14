@@ -13,12 +13,30 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 import java.sql.Connection;
+import java.util.List;
 
 @Path("/runners")
 public class MarathonService {
 
     @GET
-    @Path("/winner/{marathonID}")
+    @Path("") // --> /marathon/rest/runners
+    public Response listRunners() throws Exception {
+        Connection connection = null;
+        List<Runner> runners;
+        try {
+            connection = DAOUtils.getConnection();
+            RunnerDAO runnerDAO = new RunnerDAO(connection);
+            runners = runnerDAO.getAllRunners();
+        } finally {
+            if (connection != null) {
+                connection.close();
+            }
+        }
+        return Response.status(200).entity(runners).build();
+    }
+
+    @GET
+    @Path("/winner/{marathonID}") // --> /marathon/rest/runners/winner/1
     public Response checkWinner(@PathParam("marathonID") String marathonID) throws Exception {
         Connection connection = null;
         String winner = null;
@@ -37,7 +55,7 @@ public class MarathonService {
     }
 
     @POST
-    @Path("/create")
+    @Path("/create") // --> /marathon/rest/runners/create
     public Response createRunner(RunnerRegistration runnerRegistration) throws Exception {
         Connection connection = null;
         boolean rollback = true;

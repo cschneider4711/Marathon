@@ -1,7 +1,19 @@
 <div style="text-align:center">
-    <h1>Welcome to {{ title }}!</h1>
-    <!--
-    <a routerLink="/runners">View Runners</a>
-    <router-outlet></router-outlet>
-    -->
+    <h2>{{ title }}</h2>
+    <table border="1">
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Street</th>
+            <th>Zip</th>
+            <th>City</th>
+        </tr>
+        <tr *ngFor="let runner of runners">
+            <td>{{runner.firstname}}</td>
+            <td>{{runner.lastname}}</td>
+            <td>{{runner.street}}</td>
+            <td>{{runner.zip}}</td>
+            <td>{{runner.city}}</td>
+        </tr>
+    </table>
 </div>
