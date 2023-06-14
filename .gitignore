@@ -25,7 +25,8 @@ target/
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
-
+# local IDE stuff
+.idea/
 
 # allow for certain directories certain file types (for the local integration test folder)
 !integration/**/**/logs
