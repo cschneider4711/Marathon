@@ -3,7 +3,9 @@
 ######
 FROM alpine/git as clone
 WORKDIR /app
-RUN git clone https://github.com/cschneider4711/Marathon.git
+
+COPY . /app/Marathon
+# RUN git clone https://github.com/cschneider4711/Marathon.git
 
 
 

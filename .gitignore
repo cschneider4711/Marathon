@@ -27,6 +27,7 @@ hs_err_pid*
 
 # local IDE stuff
 .idea/
+*.iml
 
 # allow for certain directories certain file types (for the local integration test folder)
 !integration/**/**/logs
