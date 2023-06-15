@@ -174,7 +174,7 @@ public class MarathonService {
             if (connection != null) connection.close();
         }
 
-        return Response.status(200).entity(runners).build();
+        return Response.status(200).entity(runners).type(MediaType.APPLICATION_JSON).build();
     }
 
     private String getSessionCookie(HttpServletRequest request) {
