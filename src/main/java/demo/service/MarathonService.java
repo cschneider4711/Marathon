@@ -7,12 +7,15 @@ import demo.dao.SystemDAO;
 import demo.pojo.Results;
 import demo.pojo.Runner;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
+import javax.imageio.ImageIO;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.StreamingOutput;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.*;
+import java.nio.file.Files;
 import java.sql.Connection;
 import java.util.HashMap;
 import java.util.List;
@@ -94,6 +97,55 @@ public class MarathonService {
             }
         }
         return Response.status(200).build();
+    }
+
+    @GET
+    @Path("/{runnerID}/picture/{width}/{height}") // --> /marathon/rest/runners/1/picture/500/500
+    @Produces("image/jpeg")
+    public Response getProfilePic(@PathParam("runnerID") String runnerID, @PathParam("width") int width, @PathParam("height") int height) throws Exception {
+        Connection connection = null;
+        byte[] profilePic = null;
+        try {
+            connection = DAOUtils.getConnection();
+            RunnerDAO runnerDAO = new RunnerDAO(connection);
+            Runner runner = runnerDAO.loadRunner(Long.parseLong(runnerID));
+            File photoFolder = new File(System.getProperty("user.home"), "marathonImages");
+            File photo = new File(photoFolder, runner.getPhotoName());
+            profilePic = Files.readAllBytes(photo.toPath());
+
+            // Create an image from the byte array
+            BufferedImage originalImage = ImageIO.read(new ByteArrayInputStream(profilePic));
+
+            // Create new image with RGB color model (plus resizing it)
+            Image tmp = originalImage.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+            BufferedImage rgbImageResized = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+
+            // Draw the original image onto new image
+            Graphics2D g2d = rgbImageResized.createGraphics();
+            g2d.drawImage(tmp, 0, 0, null);
+            g2d.dispose();
+
+            // Convert the resized image back to a byte array
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write(rgbImageResized, "JPEG", baos);
+            baos.flush();
+            final byte[] imageInByte = baos.toByteArray();
+            baos.close();
+
+            // Wrap the byte array into a StreamingOutput
+            StreamingOutput stream = new StreamingOutput() {
+                @Override
+                public void write(OutputStream output) throws IOException, WebApplicationException {
+                    output.write(imageInByte);
+                    output.flush();
+                }
+            };
+
+            return Response.ok(stream).build();
+
+        } finally {
+            if (connection != null) connection.close();
+        }
     }
 
 }
