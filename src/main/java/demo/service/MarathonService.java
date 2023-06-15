@@ -150,6 +150,12 @@ public class MarathonService {
         }
     }
 
+    /**
+     * Returns the list of runners that are not registered on any discipline (for admins to register them)
+     * @param request
+     * @return
+     * @throws Exception
+     */
     @GET
     @Path("/unregistered") // --> /marathon/rest/runners/unregistered
     public Response getUnregisteredRunners(@Context HttpServletRequest request) throws Exception {
