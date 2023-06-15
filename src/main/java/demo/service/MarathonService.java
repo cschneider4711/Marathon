@@ -17,6 +17,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.nio.file.Files;
+import java.security.Principal;
 import java.sql.Connection;
 import java.util.HashMap;
 import java.util.List;
@@ -153,12 +154,12 @@ public class MarathonService {
     @Path("/unregistered") // --> /marathon/rest/runners/unregistered
     public Response getUnregisteredRunners(@Context HttpServletRequest request) throws Exception {
         String sessionCookie = getSessionCookie(request);
-        if (!isValidSession(request, sessionCookie)) {
+        if (!isValidSession(request, sessionCookie, true)) {
             return Response.status(Response.Status.UNAUTHORIZED).build();
         }
 
         Connection connection = null;
-        List<Runner> runners = null;
+        List<Runner> runners;
         try {
             connection = DAOUtils.getConnection();
             RunnerDAO runnerDAO = new RunnerDAO(connection);
@@ -184,11 +185,20 @@ public class MarathonService {
         return sessionCookie;
     }
 
-    private boolean isValidSession(HttpServletRequest request, String jsessionId) {
+    private boolean isValidSession(HttpServletRequest request, String jsessionId, boolean loggedIn) {
         if (request == null) {
             return false;
         }
         HttpSession session = request.getSession(false);
-        return session != null && jsessionId.equals(session.getId());
+        boolean ok = session != null && jsessionId.equals(session.getId());
+        if (ok && loggedIn) {
+            String loggedInUser = null;
+            final Principal principal = request.getUserPrincipal();
+            if (principal != null) {
+                loggedInUser = principal.getName();
+            }
+            ok = loggedInUser != null;
+        }
+        return ok;
     }
 }
