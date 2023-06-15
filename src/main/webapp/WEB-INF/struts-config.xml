@@ -31,6 +31,10 @@
           <forward name="showMarathons" path="/WEB-INF/pages/showMarathons.jsp" />
 		</action>
 
+		<action path="/admin/showUnregistered" scope="request" type="demo.action.ShowUnregisteredAction">
+          <forward name="showUnregistered" path="/WEB-INF/pages/showUnregistered.jsp" />
+		</action>
+
         <action path="/showResults" scope="request" type="demo.action.ShowResultsAction">
             <forward name="showResults" path="/WEB-INF/pages/showResults.jsp" />
             <forward name="showChart" path="/WEB-INF/pages/showResultChart.jsp" />

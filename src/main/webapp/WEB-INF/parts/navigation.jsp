@@ -23,8 +23,13 @@
         <td class="<%=navClass%> navText">
             <c:url var="showMarathons" value="/showMarathons.page">
             </c:url>                     
-            <a href="${showMarathons}" class="button">Home</a>     
-            
+            <a href="${showMarathons}" class="button">Home</a>
+
+            <logic:present role="administrator">
+                <c:url var="showUnregistered" value="/admin/showUnregistered.page"></c:url>
+                <a href="${showUnregistered}" class="button">Unregistered</a>
+            </logic:present>
+
             <logic:present role="runner">
 	            <a href="${profile}" class="button">Profile</a>     
                 <c:url var="attendances" value="/secured/attendances.page">
