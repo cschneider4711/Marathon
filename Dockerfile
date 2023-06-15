@@ -62,7 +62,7 @@ COPY --from=java-build /app/integration/db/hsqldb/lib/hsqldb.jar /usr/local/tomc
 COPY --from=java-build /app/src/main/java/demo/antivirus/scanFile.sh /home/marathon/marathonScripts/scanFile.sh
 COPY --from=java-build /app/src/main/java/demo/util/default.png /home/marathon/marathonImages/default.png
 
-COPY --from=angular-build /usr/src/app/dist/marathon /usr/local/tomcat/webapps/ROOT/client
+COPY --from=angular-build /usr/src/app/dist/marathon /usr/local/tomcat/webapps/ROOT/poc
 
 RUN chmod 755 /home/marathon/marathonScripts/scanFile.sh
 
