@@ -45,8 +45,11 @@ public class SecurityFilter implements Filter {
 		
 		String paramValues = logRequestParams(httpRequest);
 		checkTime(httpRequest, paramValues);
-		addAntiCacheHeader(httpRequest, httpResponse);
-		
+		boolean antiCache = false;
+		if (antiCache) {
+			addAntiCacheHeader(httpRequest, httpResponse);
+		}
+
 		String uri = httpRequest.getRequestURI();
 		if ("/marathon/check".equals(uri)) {
 			Long checkTime = (Long)httpRequest.getServletContext().getAttribute(CHECK_TIME);
