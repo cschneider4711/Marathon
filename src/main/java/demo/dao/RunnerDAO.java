@@ -190,5 +190,32 @@ public class RunnerDAO {
 		return runners;
 	}
 
+	public List<Runner> getRunnersNotRegisteredOnAnyDiscipline() throws SQLException {
+		PreparedStatement statement = null;
+		ResultSet resultSet = null;
+		List<Runner> runners = new ArrayList<>();
+
+		try {
+			String sql = "SELECT runner.id, runner.username, runner.firstname, runner.lastname, runner.street, runner.zip, runner.city, runner.date_of_birth, runner.creditcard_number, runner.photo_name FROM runner WHERE runner.id NOT IN " +
+					"(SELECT DISTINCT run.runner_id FROM run)";
+			statement = this.connection.prepareStatement(sql);
+			resultSet = statement.executeQuery();
+
+			while (resultSet.next()) {
+				Runner runner = extractRunner(resultSet, "", true);
+				/*
+				Runner runner = new Runner();
+				runner.setId(resultSet.getLong("id"));
+				runner.setFirstname(resultSet.getString("firstname"));
+				runner.setLastname(resultSet.getString("lastname"));
+				 */
+				runners.add(runner);
+			}
+		} finally {
+			if (resultSet != null) resultSet.close();
+			if (statement != null) statement.close();
+		}
+		return runners;
+	}
 
 }

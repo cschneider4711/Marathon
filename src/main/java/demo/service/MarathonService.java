@@ -8,10 +8,11 @@ import demo.pojo.Results;
 import demo.pojo.Runner;
 
 import javax.imageio.ImageIO;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.StreamingOutput;
+import javax.ws.rs.core.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
@@ -148,4 +149,46 @@ public class MarathonService {
         }
     }
 
+    @GET
+    @Path("/unregistered") // --> /marathon/rest/runners/unregistered
+    public Response getUnregisteredRunners(@Context HttpServletRequest request) throws Exception {
+        String sessionCookie = getSessionCookie(request);
+        if (!isValidSession(request, sessionCookie)) {
+            return Response.status(Response.Status.UNAUTHORIZED).build();
+        }
+
+        Connection connection = null;
+        List<Runner> runners = null;
+        try {
+            connection = DAOUtils.getConnection();
+            RunnerDAO runnerDAO = new RunnerDAO(connection);
+            runners = runnerDAO.getRunnersNotRegisteredOnAnyDiscipline();
+        } finally {
+            if (connection != null) connection.close();
+        }
+
+        return Response.status(200).entity(runners).build();
+    }
+
+    private String getSessionCookie(HttpServletRequest request) {
+        // Authenticate user using session cookie
+        String sessionCookie = null;
+        if (request.getCookies() != null) {
+            for (Cookie cookie : request.getCookies()) {
+                if (cookie.getName().equals("JSESSIONID")) {
+                    sessionCookie = cookie.getValue();
+                    break;
+                }
+            }
+        }
+        return sessionCookie;
+    }
+
+    private boolean isValidSession(HttpServletRequest request, String jsessionId) {
+        if (request == null) {
+            return false;
+        }
+        HttpSession session = request.getSession(false);
+        return session != null && jsessionId.equals(session.getId());
+    }
 }
