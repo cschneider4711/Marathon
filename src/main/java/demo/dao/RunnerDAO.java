@@ -202,13 +202,7 @@ public class RunnerDAO {
 			resultSet = statement.executeQuery();
 
 			while (resultSet.next()) {
-				Runner runner = extractRunner(resultSet, "", true);
-				/*
-				Runner runner = new Runner();
-				runner.setId(resultSet.getLong("id"));
-				runner.setFirstname(resultSet.getString("firstname"));
-				runner.setLastname(resultSet.getString("lastname"));
-				 */
+				Runner runner = extractRunner(resultSet, "", false);
 				runners.add(runner);
 			}
 		} finally {
