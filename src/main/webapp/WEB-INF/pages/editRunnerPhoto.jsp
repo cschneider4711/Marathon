@@ -70,6 +70,32 @@
    			</div>
 	    </div>
 	</div>
+
+	<input type="button" onclick="removePhoto('${runner.id}')" value="Remove Photo">
+
+	<script>
+		function removePhoto(id) {
+			var xhr = new XMLHttpRequest();
+			xhr.open("DELETE", "/marathon/rest/runners/" + id + "/photo", true);
+			xhr.onload = function () {
+				if (xhr.status == 204) {
+					console.log('Photo removed successfully.');
+					alert('Photo removed successfully.');
+				} else if (xhr.status == 404) {
+					console.log('No photo found to delete.');
+					alert('No photo found to delete.');
+				} else {
+					console.log('An error occurred: ' + xhr.status);
+					alert('An error occurred: ' + xhr.status);
+				}
+			};
+			xhr.onerror = function () {
+				console.log('Request failed.');
+				alert('Request failed.');
+			};
+			xhr.send();
+		}
+	</script>
 					        
 
 

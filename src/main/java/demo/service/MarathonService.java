@@ -159,8 +159,7 @@ public class MarathonService {
     @GET
     @Path("/unregistered") // --> /marathon/rest/runners/unregistered
     public Response getUnregisteredRunners(@Context HttpServletRequest request) throws Exception {
-        String sessionCookie = getSessionCookie(request);
-        if (!isValidSession(request, sessionCookie, true)) {
+        if (!isValidSession(request, true)) {
             return Response.status(Response.Status.UNAUTHORIZED).build();
         }
 
@@ -177,6 +176,30 @@ public class MarathonService {
         return Response.status(200).entity(runners).type(MediaType.APPLICATION_JSON).build();
     }
 
+    @DELETE
+    @Path("/{runnerId}/photo")
+    public Response deleteRunnerPhoto(@Context HttpServletRequest request, @PathParam("runnerId") String runnerId) throws Exception {
+        if (!isValidSession(request, true)) {
+            return Response.status(Response.Status.UNAUTHORIZED).build();
+        }
+
+        Connection connection = null;
+        try {
+            connection = DAOUtils.getConnection();
+            RunnerDAO runnerDAO = new RunnerDAO(connection);
+
+            boolean success = runnerDAO.removeRunnerPhoto(runnerId);
+            if (success) {
+                return Response.status(Response.Status.NO_CONTENT).build(); // 204 No Content response if the photo was deleted
+            } else {
+                return Response.status(Response.Status.NOT_FOUND).build(); // 404 Not Found if there was no photo to delete
+            }
+
+        } finally {
+            if (connection != null) connection.close();
+        }
+    }
+
     private String getSessionCookie(HttpServletRequest request) {
         // Authenticate user using session cookie
         String sessionCookie = null;
@@ -191,10 +214,11 @@ public class MarathonService {
         return sessionCookie;
     }
 
-    private boolean isValidSession(HttpServletRequest request, String jsessionId, boolean loggedIn) {
+    private boolean isValidSession(HttpServletRequest request, boolean loggedIn) {
         if (request == null) {
             return false;
         }
+        String jsessionId = getSessionCookie(request);
         HttpSession session = request.getSession(false);
         boolean ok = session != null && jsessionId.equals(session.getId());
         if (ok && loggedIn) {

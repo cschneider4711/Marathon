@@ -212,4 +212,12 @@ public class RunnerDAO {
 		return runners;
 	}
 
+	public boolean removeRunnerPhoto(String runnerId) throws SQLException {
+		String sql = "UPDATE runner SET photo_name = 'default.png' WHERE id = ?";
+		try (PreparedStatement statement = connection.prepareStatement(sql)) {
+			statement.setString(1, runnerId);
+			int rowsAffected = statement.executeUpdate();
+			return rowsAffected > 0;
+		}
+	}
 }

@@ -78,6 +78,18 @@
                         <artifactId>batik-transcoder</artifactId>
                         <version>1.6</version>
                 </dependency>
+		<!--
+                <dependency>
+                        <groupId>batik</groupId>
+                        <artifactId>batik-rasterizer</artifactId>
+                        <version>1.6</version>
+                </dependency>
+                <dependency>
+						<groupId>xml-apis</groupId>
+						<artifactId>xml-apis</artifactId>
+						<version>1.4.01</version>
+                </dependency>
+		-->
 		<dependency>
 			<groupId>org.owasp.encoder</groupId>
 			<artifactId>encoder</artifactId>
