@@ -24,7 +24,7 @@ public class RunnerDAO {
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
 		try {
-			statement = this.connection.prepareStatement("SELECT id, username, firstname, lastname, street, zip, city, date_of_birth, creditcard_number, photo_name FROM runner WHERE id = ?");
+			statement = this.connection.prepareStatement("SELECT id, username, firstname, lastname, street, zip, city, date_of_birth, creditcard_number, photo_name, vip FROM runner WHERE id = ?");
 			statement.setLong(1, runnerId);
 			resultSet = statement.executeQuery();
 			if (resultSet.next()) {
@@ -43,7 +43,7 @@ public class RunnerDAO {
 		ResultSet resultSet = null;
 		try {
 			statement = this.connection.prepareStatement("SELECT id, username, firstname, lastname, street, zip, "
-					+"city, date_of_birth, creditcard_number, photo_name FROM runner WHERE username = ?");
+					+"city, date_of_birth, creditcard_number, photo_name, vip FROM runner WHERE username = ?");
 			statement.setString(1, runnerName);
 			resultSet = statement.executeQuery();
 			if (resultSet.next()) {
@@ -65,7 +65,7 @@ public class RunnerDAO {
 				throw new SQLException("Not allowing a wide search. Please refine your search criteria");
 			}
 			statement = this.connection.createStatement();
-			resultSet = statement.executeQuery("SELECT id, username, firstname, lastname, street, zip, city, date_of_birth, photo_name FROM runner " +
+			resultSet = statement.executeQuery("SELECT id, username, firstname, lastname, street, zip, city, date_of_birth, photo_name, vip FROM runner " +
 					"WHERE username LIKE '%"+searchTerm+"%' " +
 					" OR UPPER(firstname) LIKE '%"+searchTerm.toUpperCase()+"%' " +
 					" OR UPPER(lastname) LIKE '%"+searchTerm.toUpperCase()+"%' ");
@@ -91,6 +91,7 @@ public class RunnerDAO {
 		runner.setCity( resultSet.getString(prefix+"city") );
 		runner.setDateOfBirth( resultSet.getDate(prefix+"date_of_birth") );
 		runner.setPhotoName( resultSet.getString(prefix+"photo_name") );
+		runner.setVip( resultSet.getBoolean(prefix+"vip") );
 		if (includeCreditcardNumber) {
 			runner.setCreditCardNumber( resultSet.getString(prefix+"creditcard_number") );
 		}
@@ -179,7 +180,7 @@ public class RunnerDAO {
 		List<Runner> runners = new ArrayList<>();
 
 		PreparedStatement stmt = this.connection.prepareStatement("SELECT id, username, firstname, lastname, street, zip, "
-				+"city, date_of_birth, creditcard_number, photo_name FROM runner");
+				+"city, date_of_birth, creditcard_number, photo_name, vip FROM runner");
 		ResultSet rs = stmt.executeQuery();
 
 		while(rs.next()) {
@@ -196,7 +197,7 @@ public class RunnerDAO {
 		List<Runner> runners = new ArrayList<>();
 
 		try {
-			String sql = "SELECT runner.id, runner.username, runner.firstname, runner.lastname, runner.street, runner.zip, runner.city, runner.date_of_birth, runner.creditcard_number, runner.photo_name FROM runner WHERE runner.id NOT IN " +
+			String sql = "SELECT runner.id, runner.username, runner.firstname, runner.lastname, runner.street, runner.zip, runner.city, runner.date_of_birth, runner.creditcard_number, runner.photo_name, runner.vip FROM runner WHERE runner.id NOT IN " +
 					"(SELECT DISTINCT run.runner_id FROM run)";
 			statement = this.connection.prepareStatement(sql);
 			resultSet = statement.executeQuery();

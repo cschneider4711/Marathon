@@ -9,6 +9,7 @@ public class Runner implements Serializable {
 	private Long id;
 	private String username, firstname, lastname, street, zip, city, creditCardNumber, photoName;
 	private Date dateOfBirth;
+	private boolean vip;
 	
 	public Runner() {
 		super();
@@ -99,6 +100,14 @@ public class Runner implements Serializable {
 
 	public void setPhotoName(String photoName) {
 		this.photoName = photoName;
+	}
+
+	public boolean isVip() {
+		return vip;
+	}
+
+	public void setVip(boolean vip) {
+		this.vip = vip;
 	}
 
 	@Override

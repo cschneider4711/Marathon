@@ -39,6 +39,7 @@ public class ResultsDAO {
 							"  runner.street AS runner_street, "+
 							"  runner.zip AS runner_zip, "+
 							"  runner.city AS runner_city, "+
+							"  runner.vip AS runner_vip, "+
 							"  runner.date_of_birth AS runner_date_of_birth," +
 							"  runner.photo_name AS runner_photo_name "+
 							"FROM marathon marathon, run run, runner runner "+

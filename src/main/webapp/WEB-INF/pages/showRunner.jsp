@@ -38,6 +38,10 @@
 	        </div>
 	        <div class="span6">
 
+				<logic:equal name="runner" property="vip" value="true">
+					<b style="color:red">VIP</b><br/>
+				</logic:equal>
+
 			    <logic:notEmpty name="runner" property="photoName">
 			        <img src="<c:url value="PhotoLoader?photo=${fn:escapeXml(runner.photoName)}"/>" border="0" />
 			    </logic:notEmpty>
