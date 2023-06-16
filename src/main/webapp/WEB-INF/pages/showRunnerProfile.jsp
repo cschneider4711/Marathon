@@ -56,10 +56,12 @@
 					                <td class="right">City</td>
 					                <td><html:text property="city" size="24" maxlength="50" /></td>
 					            </tr>
+								<%--
 					            <tr>
 					                <td class="right">Creditcard number</td>
 					                <td><html:text property="creditcardNumber" size="24" maxlength="19" /></td>
 					            </tr>
+					            --%>
 					            <tr>
 					                <td class="right">Date of birth (dd.mm.yyyy)</td>
 					                <td><html:text property="dateOfBirth" size="24" maxlength="10" /></td>

@@ -145,16 +145,15 @@ public class RunnerDAO {
 		try {
 			statement = this.connection.prepareStatement("UPDATE runner SET firstname=?, " +
 					"lastname=?, street=?, zip=?, city=?, " +
-					"creditcard_number=?, date_of_birth=? " +
+					"date_of_birth=? " +
 					"WHERE id=? ");
 			statement.setString(1, runner.getFirstname());
 			statement.setString(2, runner.getLastname());
 			statement.setString(3, runner.getStreet());
 			statement.setString(4, runner.getZip());
 			statement.setString(5, runner.getCity());
-			statement.setString(6, runner.getCreditCardNumber());
-			statement.setDate(7, new java.sql.Date(runner.getDateOfBirth().getTime()));
-			statement.setLong(8, runner.getId());
+			statement.setDate(6, new java.sql.Date(runner.getDateOfBirth().getTime()));
+			statement.setLong(7, runner.getId());
 			statement.executeUpdate();
 		} finally {
 			if (statement != null) statement.close();
