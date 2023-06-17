@@ -77,6 +77,10 @@
     <display-name>PhotoLoader</display-name>
     <servlet-name>PhotoLoader</servlet-name>
     <servlet-class>demo.util.PhotoLoader</servlet-class>
+    <init-param>
+      <param-name>PhotoFolder</param-name>
+      <param-value>/home/marathon/marathonImages</param-value>
+    </init-param>
   </servlet>
   
   

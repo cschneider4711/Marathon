@@ -114,7 +114,9 @@
         <html:link href="/marathon/secured/editRunnerPhoto.page">Edit profile photo</html:link> <br/>
     </logic:present>
 
-    <a href="javascript:enterCC()">Enter credit card payment data</a><br/>
+	<logic:notPresent role="administrator">
+    	<a href="javascript:enterCC()">Enter credit card payment data</a><br/>
+	</logic:notPresent>
 
 	<a href="/marathon/Permalink?act=/marathon/showRunner.page%3frunner%3d${runner.id}">Public runner's profile link (bookmark-safe)</a>
 

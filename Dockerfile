@@ -56,15 +56,21 @@ WORKDIR /app
 # Create a group and user "marathon"
 RUN addgroup --system marathon && adduser --system --ingroup marathon --home /home/marathon marathon
 
+RUN mkdir -p /root/marathonScripts && mkdir -p /root/marathonImages
+
 COPY --from=java-build /app/target/marathon.war /usr/local/tomcat/webapps
 COPY --from=java-build /app/integration/db/hsqldb /app/hsqldb
 COPY --from=java-build /app/integration/db/hsqldb/lib/hsqldb.jar /usr/local/tomcat/lib/hsqldb.jar
 COPY --from=java-build /app/src/main/java/demo/antivirus/scanFile.sh /home/marathon/marathonScripts/scanFile.sh
+COPY --from=java-build /app/src/main/java/demo/antivirus/scanFile.sh /root/marathonScripts/scanFile.sh
 COPY --from=java-build /app/src/main/java/demo/util/default.png /home/marathon/marathonImages/default.png
+COPY --from=java-build /app/src/main/java/demo/util/default.png /root/marathonImages/default.png
 
 COPY --from=angular-build /usr/src/app/dist/marathon /usr/local/tomcat/webapps/ROOT/poc
 
-RUN chmod 755 /home/marathon/marathonScripts/scanFile.sh
+COPY --from=clone /app/Marathon/integration/tomcat-users.xml /usr/local/tomcat/conf/tomcat-users.xml
+
+RUN chmod 755 /root/marathonScripts/scanFile.sh && chmod 755 /home/marathon/marathonScripts/scanFile.sh
 
 RUN echo "cd /app/hsqldb/bin; ./startMarathonDB.sh &" >> /app/marathon.sh
 #RUN echo "sleep 3; cd /usr/local/tomcat/bin; ./startup.sh; tail -f /usr/local/tomcat/logs/catalina.out" >> /app/marathon.sh
@@ -72,8 +78,8 @@ RUN echo "sleep 3; cd /usr/local/tomcat/bin; ./catalina.sh jpda start; tail -f /
 RUN chmod 755 /app/marathon.sh
 
 # Tell docker that all future commands should run as the "marathon" user
-RUN chown -R marathon:marathon /app /usr/local/tomcat /home/marathon
-USER marathon
+#RUN chown -R marathon:marathon /app /usr/local/tomcat /home/marathon
+#USER marathon
 
 ENV CATALINA_OPTS="-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=7199 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false"
 
