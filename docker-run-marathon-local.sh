@@ -1,1 +1,0 @@
-docker run --rm --name marathon-8080 -p 127.0.0.1:8080:8080 --cpu-shares="256" --memory-reservation="512m" --memory="1g" marathon:latest

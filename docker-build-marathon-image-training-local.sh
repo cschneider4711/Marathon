@@ -1,0 +1,1 @@
+docker build -f Dockerfile-local --no-cache --pull -t marathon:training .
