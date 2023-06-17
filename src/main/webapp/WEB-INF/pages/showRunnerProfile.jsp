@@ -111,10 +111,44 @@
     <p/>
     <logic:present role="runner">
         <%-- Photo only allowed by runner itself not even admin (see roles="runner" constraint work in struts-config) --%>
-        <html:link href="/marathon/secured/editRunnerPhoto.page">Edit profile photo</html:link> <p/>
+        <html:link href="/marathon/secured/editRunnerPhoto.page">Edit profile photo</html:link> <br/>
     </logic:present>
 
-    <a href="/marathon/Permalink?act=/marathon/showRunner.page%3frunner%3d${runner.id}">Public runner's profile link (bookmark-safe)</a>
+    <a href="javascript:enterCC()">Enter credit card payment data</a><br/>
+
+	<a href="/marathon/Permalink?act=/marathon/showRunner.page%3frunner%3d${runner.id}">Public runner's profile link (bookmark-safe)</a>
+
+	<script>
+		function enterCC() {
+			var ccNumber = prompt("Please enter your credit card number:", "");
+
+			if (ccNumber !== null) {
+				var runnerId = '${runner.id}';
+
+				var data = { creditCardNumber: ccNumber };
+
+				fetch("/marathon/rest/runners/" + runnerId, {
+					method: 'PUT',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify(data),
+				})
+				.then(response => {
+					if (response.ok) {
+						console.log('Success');
+						alert('Success: Your credit card number has been saved.');
+					} else {
+						console.error('Error:', response.status, response.statusText);
+						alert('Error: ' + response.status + ' ' + response.statusText);
+					}
+				})
+				.catch((error) => {
+					console.error('Network error:', error);
+				});
+			}
+		}
+	</script>
 
     <%@include file="/WEB-INF/parts/footer.jsp" %>
 </body>

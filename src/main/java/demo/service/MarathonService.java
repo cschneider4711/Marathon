@@ -6,8 +6,10 @@ import demo.dao.RunnerDAO;
 import demo.dao.SystemDAO;
 import demo.pojo.Results;
 import demo.pojo.Runner;
+import org.apache.commons.beanutils.BeanUtils;
 
 import javax.imageio.ImageIO;
+import javax.naming.NamingException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -19,6 +21,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.security.Principal;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -177,7 +180,7 @@ public class MarathonService {
     }
 
     @DELETE
-    @Path("/{runnerId}/photo")
+    @Path("/{runnerId}/photo") // --> /marathon/rest/runners/48/photo
     public Response deleteRunnerPhoto(@Context HttpServletRequest request, @PathParam("runnerId") String runnerId) throws Exception {
         if (!isValidSession(request, true)) {
             return Response.status(Response.Status.UNAUTHORIZED).build();
@@ -198,6 +201,51 @@ public class MarathonService {
         } finally {
             if (connection != null) connection.close();
         }
+    }
+
+    @PUT
+    @Path("/{runnerId}") // --> /marathon/rest/runners/48
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response updateRunner(@Context HttpServletRequest request, @PathParam("runnerId") String runnerId, Map<String, Object> updates) throws Exception {
+        if (!isValidSession(request, true) || !isSameRunner(request, runnerId)) {
+            return Response.status(Response.Status.UNAUTHORIZED).build();
+        }
+
+        Connection connection = null;
+        try {
+            connection = DAOUtils.getConnection();
+            RunnerDAO runnerDAO = new RunnerDAO(connection);
+            Runner runner = runnerDAO.loadRunner(Long.parseLong(runnerId));
+            if(runner == null) {
+                return Response.status(404).entity("Runner not found").build();
+            }
+            BeanUtils.populate(runner, updates);
+            runnerDAO.updateRunner(runner, true);
+        } finally {
+            if (connection != null) connection.close();
+        }
+        return Response.status(200).build();
+    }
+
+    private boolean isSameRunner(HttpServletRequest request, String runnerId) throws SQLException, NamingException {
+        String loggedInUser = null;
+        final Principal principal = request.getUserPrincipal();
+        if (principal != null) {
+            loggedInUser = principal.getName();
+            Connection connection = null;
+            try {
+                connection = DAOUtils.getConnection();
+                RunnerDAO runnerDAO = new RunnerDAO(connection);
+                Runner runner = runnerDAO.loadRunner(Long.parseLong(runnerId));
+                if(runner == null) {
+                    return false;
+                }
+                return loggedInUser.equals(runner.getUsername());
+            } finally {
+                if (connection != null) connection.close();
+            }
+        }
+        return false;
     }
 
     private String getSessionCookie(HttpServletRequest request) {

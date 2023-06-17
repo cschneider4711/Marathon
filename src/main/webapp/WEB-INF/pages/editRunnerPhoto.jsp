@@ -71,7 +71,7 @@
 	    </div>
 	</div>
 
-	<input type="button" onclick="removePhoto('${runner.id}')" value="Remove Photo">
+	<input type="button" style="color:red" onclick="removePhoto('${runner.id}')" value="Remove Photo">
 
 	<script>
 		function removePhoto(id) {

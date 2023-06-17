@@ -48,7 +48,7 @@ public class UpdateRunnerProfileAction extends Action {
 					runnerForm.getDateOfBirthAsDate(),
 					runnerForm.getCreditcardNumber()
 				);
-			runnerDAO.updateRunner(runner);
+			runnerDAO.updateRunner(runner, false);
 			runner = runnerDAO.loadRunner(runner.getId());
 			
 			String marshalledBase64 = request.getParameter("state");

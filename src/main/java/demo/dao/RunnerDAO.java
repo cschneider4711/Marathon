@@ -140,20 +140,33 @@ public class RunnerDAO {
 	}
 
 
-	public void updateRunner(Runner runner) throws SQLException {
+	public void updateRunner(Runner runner, boolean wide) throws SQLException {
 		PreparedStatement statement = null;
 		try {
-			statement = this.connection.prepareStatement("UPDATE runner SET firstname=?, " +
-					"lastname=?, street=?, zip=?, city=?, " +
-					"date_of_birth=? " +
-					"WHERE id=? ");
+			if (wide) {
+				statement = this.connection.prepareStatement("UPDATE runner SET firstname=?, " +
+						"lastname=?, street=?, zip=?, city=?, " +
+						"date_of_birth=?, creditcard_number=?, vip=? " +
+						"WHERE id=? ");
+			} else {
+				statement = this.connection.prepareStatement("UPDATE runner SET firstname=?, " +
+						"lastname=?, street=?, zip=?, city=?, " +
+						"date_of_birth=? " +
+						"WHERE id=? ");
+			}
 			statement.setString(1, runner.getFirstname());
 			statement.setString(2, runner.getLastname());
 			statement.setString(3, runner.getStreet());
 			statement.setString(4, runner.getZip());
 			statement.setString(5, runner.getCity());
 			statement.setDate(6, new java.sql.Date(runner.getDateOfBirth().getTime()));
-			statement.setLong(7, runner.getId());
+			if (wide) {
+				statement.setString(7, runner.getCreditCardNumber());
+				statement.setBoolean(8, runner.isVip());
+				statement.setLong(9, runner.getId());
+			} else {
+				statement.setLong(7, runner.getId());
+			}
 			statement.executeUpdate();
 		} finally {
 			if (statement != null) statement.close();
