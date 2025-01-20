@@ -1,0 +1,356 @@
+{
+  "about": "This is a Zest script. For more details about Zest visit https://github.com/zaproxy/zest/",
+  "zestVersion": "0.8",
+  "title": "Marathon.zst",
+  "description": "",
+  "prefix": "",
+  "type": "StandAlone",
+  "parameters": {
+    "tokenStart": "{{",
+    "tokenEnd": "}}",
+    "tokens": {},
+    "elementType": "ZestVariables"
+  },
+  "statements": [
+    {
+      "url": "http://localhost:9090/marathon/showMarathons.page",
+      "data": "",
+      "method": "GET",
+      "headers": "Upgrade-Insecure-Requests: 1\r\nSec-Fetch-Dest: document\r\nSec-Fetch-Mode: navigate\r\nSec-Fetch-Site: none\r\nSec-Fetch-User: ?1\r\nPriority: u\u003d0, i\r\n",
+      "response": {
+        "url": "http://localhost:9090/marathon/showMarathons.page",
+        "headers": "HTTP/1.1 200 OK\r\nServer: nginx/1.27.2\r\nDate: Sat, 02 Nov 2024 16:43:58 GMT\r\nContent-Type: text/html;charset\u003dISO-8859-1\r\nContent-Length: 3091\r\nConnection: keep-alive\r\n\r\n",
+        "body": "",
+        "statusCode": 200,
+        "responseTimeInMs": 22,
+        "elementType": "ZestResponse"
+      },
+      "assertions": [],
+      "followRedirects": false,
+      "timestamp": 1730565838954,
+      "cookies": [],
+      "index": 1,
+      "enabled": true,
+      "elementType": "ZestRequest"
+    },
+    {
+      "url": "http://localhost:9090/marathon/showResults.page?marathon\u003d0",
+      "data": "",
+      "method": "GET",
+      "headers": "Upgrade-Insecure-Requests: 1\r\nSec-Fetch-Dest: document\r\nSec-Fetch-Mode: navigate\r\nSec-Fetch-Site: same-origin\r\nSec-Fetch-User: ?1\r\nPriority: u\u003d0, i\r\n",
+      "response": {
+        "url": "http://localhost:9090/marathon/showResults.page?marathon\u003d0",
+        "headers": "HTTP/1.1 200 OK\r\nServer: nginx/1.27.2\r\nDate: Sat, 02 Nov 2024 16:44:01 GMT\r\nContent-Type: text/html;charset\u003dISO-8859-1\r\nContent-Length: 5060\r\nConnection: keep-alive\r\n\r\n",
+        "body": "",
+        "statusCode": 200,
+        "responseTimeInMs": 324,
+        "elementType": "ZestResponse"
+      },
+      "assertions": [],
+      "followRedirects": false,
+      "timestamp": 1730565841020,
+      "cookies": [],
+      "index": 4,
+      "enabled": true,
+      "elementType": "ZestRequest"
+    },
+    {
+      "url": "http://localhost:9090/marathon/showResults.page?marathon\u003d0\u0026type\u003dsvg",
+      "data": "",
+      "method": "GET",
+      "headers": "Sec-Fetch-Dest: object\r\nSec-Fetch-Mode: navigate\r\nSec-Fetch-Site: same-origin\r\nPriority: u\u003d4\r\n",
+      "response": {
+        "url": "http://localhost:9090/marathon/showResults.page?marathon\u003d0\u0026type\u003dsvg",
+        "headers": "HTTP/1.1 200 OK\r\nServer: nginx/1.27.2\r\nDate: Sat, 02 Nov 2024 16:44:01 GMT\r\nContent-Type: image/svg+xml;charset\u003dISO-8859-1\r\nContent-Length: 1806\r\nConnection: keep-alive\r\n\r\n",
+        "body": "",
+        "statusCode": 200,
+        "responseTimeInMs": 93,
+        "elementType": "ZestResponse"
+      },
+      "assertions": [],
+      "followRedirects": false,
+      "timestamp": 1730565841378,
+      "cookies": [],
+      "index": 5,
+      "enabled": true,
+      "elementType": "ZestRequest"
+    },
+    {
+      "url": "http://localhost:9090/marathon/showResults.page?marathon\u003d0\u0026refresh\u003d20000",
+      "data": "",
+      "method": "GET",
+      "headers": "Upgrade-Insecure-Requests: 1\r\nSec-Fetch-Dest: document\r\nSec-Fetch-Mode: navigate\r\nSec-Fetch-Site: same-origin\r\nSec-Fetch-User: ?1\r\nPriority: u\u003d0, i\r\n",
+      "response": {
+        "url": "http://localhost:9090/marathon/showResults.page?marathon\u003d0\u0026refresh\u003d20000",
+        "headers": "HTTP/1.1 200 OK\r\nServer: nginx/1.27.2\r\nDate: Sat, 02 Nov 2024 16:44:04 GMT\r\nContent-Type: text/html;charset\u003dISO-8859-1\r\nContent-Length: 5032\r\nConnection: keep-alive\r\n\r\n",
+        "body": "",
+        "statusCode": 200,
+        "responseTimeInMs": 31,
+        "elementType": "ZestResponse"
+      },
+      "assertions": [],
+      "followRedirects": false,
+      "timestamp": 1730565844047,
+      "cookies": [],
+      "index": 6,
+      "enabled": true,
+      "elementType": "ZestRequest"
+    },
+    {
+      "url": "http://localhost:9090/marathon/showResults.page?marathon\u003d0\u0026type\u003dsvg",
+      "data": "",
+      "method": "GET",
+      "headers": "Sec-Fetch-Dest: object\r\nSec-Fetch-Mode: navigate\r\nSec-Fetch-Site: same-origin\r\nPriority: u\u003d4\r\n",
+      "response": {
+        "url": "http://localhost:9090/marathon/showResults.page?marathon\u003d0\u0026type\u003dsvg",
+        "headers": "HTTP/1.1 200 OK\r\nServer: nginx/1.27.2\r\nDate: Sat, 02 Nov 2024 16:44:04 GMT\r\nContent-Type: image/svg+xml;charset\u003dISO-8859-1\r\nContent-Length: 1806\r\nConnection: keep-alive\r\n\r\n",
+        "body": "",
+        "statusCode": 200,
+        "responseTimeInMs": 17,
+        "elementType": "ZestResponse"
+      },
+      "assertions": [],
+      "followRedirects": false,
+      "timestamp": 1730565844109,
+      "cookies": [],
+      "index": 7,
+      "enabled": true,
+      "elementType": "ZestRequest"
+    },
+    {
+      "url": "http://localhost:9090/marathon/showRunner.page?runner\u003d0",
+      "data": "",
+      "method": "GET",
+      "headers": "Upgrade-Insecure-Requests: 1\r\nSec-Fetch-Dest: document\r\nSec-Fetch-Mode: navigate\r\nSec-Fetch-Site: same-origin\r\nSec-Fetch-User: ?1\r\nPriority: u\u003d0, i\r\n",
+      "response": {
+        "url": "http://localhost:9090/marathon/showRunner.page?runner\u003d0",
+        "headers": "HTTP/1.1 200 OK\r\nServer: nginx/1.27.2\r\nDate: Sat, 02 Nov 2024 16:44:06 GMT\r\nContent-Type: text/html;charset\u003dISO-8859-1\r\nContent-Length: 2099\r\nConnection: keep-alive\r\n\r\n",
+        "body": "",
+        "statusCode": 200,
+        "responseTimeInMs": 135,
+        "elementType": "ZestResponse"
+      },
+      "assertions": [],
+      "followRedirects": false,
+      "timestamp": 1730565845998,
+      "cookies": [],
+      "index": 8,
+      "enabled": true,
+      "elementType": "ZestRequest"
+    },
+    {
+      "url": "http://localhost:9090/marathon/showMarathons.page",
+      "data": "",
+      "method": "GET",
+      "headers": "Upgrade-Insecure-Requests: 1\r\nSec-Fetch-Dest: document\r\nSec-Fetch-Mode: navigate\r\nSec-Fetch-Site: same-origin\r\nSec-Fetch-User: ?1\r\nPriority: u\u003d0, i\r\n",
+      "response": {
+        "url": "http://localhost:9090/marathon/showMarathons.page",
+        "headers": "HTTP/1.1 200 OK\r\nServer: nginx/1.27.2\r\nDate: Sat, 02 Nov 2024 16:44:07 GMT\r\nContent-Type: text/html;charset\u003dISO-8859-1\r\nContent-Length: 3091\r\nConnection: keep-alive\r\n\r\n",
+        "body": "",
+        "statusCode": 200,
+        "responseTimeInMs": 21,
+        "elementType": "ZestResponse"
+      },
+      "assertions": [],
+      "followRedirects": false,
+      "timestamp": 1730565847312,
+      "cookies": [],
+      "index": 10,
+      "enabled": true,
+      "elementType": "ZestRequest"
+    },
+    {
+      "url": "http://localhost:9090/marathon/searchRunner.page",
+      "data": "searchTerm\u003dLars",
+      "method": "POST",
+      "headers": "Content-Type: application/x-www-form-urlencoded\r\nContent-Length: 15\r\nOrigin: http://localhost:9090\r\nUpgrade-Insecure-Requests: 1\r\nSec-Fetch-Dest: document\r\nSec-Fetch-Mode: navigate\r\nSec-Fetch-Site: same-origin\r\nSec-Fetch-User: ?1\r\nPriority: u\u003d0, i\r\n",
+      "response": {
+        "url": "http://localhost:9090/marathon/searchRunner.page",
+        "headers": "HTTP/1.1 200 OK\r\nServer: nginx/1.27.2\r\nDate: Sat, 02 Nov 2024 16:44:09 GMT\r\nContent-Type: text/html;charset\u003dISO-8859-1\r\nConnection: keep-alive\r\ncontent-length: 12450\r\n\r\n",
+        "body": "",
+        "statusCode": 200,
+        "responseTimeInMs": 198,
+        "elementType": "ZestResponse"
+      },
+      "assertions": [],
+      "followRedirects": false,
+      "timestamp": 1730565849814,
+      "cookies": [],
+      "index": 11,
+      "enabled": true,
+      "elementType": "ZestRequest"
+    },
+    {
+      "url": "http://localhost:9090/marathon/secured/profile.page",
+      "data": "",
+      "method": "GET",
+      "headers": "Upgrade-Insecure-Requests: 1\r\nSec-Fetch-Dest: document\r\nSec-Fetch-Mode: navigate\r\nSec-Fetch-Site: same-origin\r\nSec-Fetch-User: ?1\r\nPriority: u\u003d0, i\r\n",
+      "response": {
+        "url": "http://localhost:9090/marathon/secured/profile.page",
+        "headers": "HTTP/1.1 200 OK\r\nServer: nginx/1.27.2\r\nDate: Sat, 02 Nov 2024 16:44:11 GMT\r\nContent-Type: text/html;charset\u003dISO-8859-1\r\nContent-Length: 1053\r\nConnection: keep-alive\r\nCache-Control: private\r\nExpires: Thu, 01 Jan 1970 00:00:00 GMT\r\n\r\n",
+        "body": "",
+        "statusCode": 200,
+        "responseTimeInMs": 85,
+        "elementType": "ZestResponse"
+      },
+      "assertions": [],
+      "followRedirects": false,
+      "timestamp": 1730565851650,
+      "cookies": [],
+      "index": 12,
+      "enabled": true,
+      "elementType": "ZestRequest"
+    },
+    {
+      "url": "http://localhost:9090/marathon/secured/j_security_check",
+      "data": "j_username\u003dtest\u0026j_password\u003dtest",
+      "method": "POST",
+      "headers": "Content-Type: application/x-www-form-urlencoded\r\nContent-Length: 31\r\nOrigin: http://localhost:9090\r\nUpgrade-Insecure-Requests: 1\r\nSec-Fetch-Dest: document\r\nSec-Fetch-Mode: navigate\r\nSec-Fetch-Site: same-origin\r\nSec-Fetch-User: ?1\r\nPriority: u\u003d0, i\r\n",
+      "response": {
+        "url": "http://localhost:9090/marathon/secured/j_security_check",
+        "headers": "HTTP/1.1 302 Found\r\nServer: nginx/1.27.2\r\nDate: Sat, 02 Nov 2024 16:44:14 GMT\r\nContent-Length: 0\r\nLocation: http://localhost:9090/marathon/secured/profile.page\r\nConnection: keep-alive\r\n\r\n",
+        "body": "",
+        "statusCode": 302,
+        "responseTimeInMs": 16,
+        "elementType": "ZestResponse"
+      },
+      "assertions": [],
+      "followRedirects": false,
+      "timestamp": 1730565854873,
+      "cookies": [],
+      "index": 13,
+      "enabled": true,
+      "elementType": "ZestRequest"
+    },
+    {
+      "url": "http://localhost:9090/marathon/secured/profile.page",
+      "data": "",
+      "method": "GET",
+      "headers": "Upgrade-Insecure-Requests: 1\r\nSec-Fetch-Dest: document\r\nSec-Fetch-Mode: navigate\r\nSec-Fetch-Site: same-origin\r\nSec-Fetch-User: ?1\r\nPriority: u\u003d0, i\r\n",
+      "response": {
+        "url": "http://localhost:9090/marathon/secured/profile.page",
+        "headers": "HTTP/1.1 200 OK\r\nServer: nginx/1.27.2\r\nDate: Sat, 02 Nov 2024 16:44:15 GMT\r\nContent-Type: text/html;charset\u003dISO-8859-1\r\nContent-Length: 5482\r\nConnection: keep-alive\r\nCache-Control: private\r\nExpires: Thu, 01 Jan 1970 00:00:00 GMT\r\nSet-Cookie: marathonUserLoginBoxDefault\u003dtest; Expires\u003dMon, 02-Dec-2024 16:44:14 GMT\r\n\r\n",
+        "body": "",
+        "statusCode": 200,
+        "responseTimeInMs": 298,
+        "elementType": "ZestResponse"
+      },
+      "assertions": [],
+      "followRedirects": false,
+      "timestamp": 1730565854892,
+      "cookies": [],
+      "index": 14,
+      "enabled": true,
+      "elementType": "ZestRequest"
+    },
+    {
+      "url": "http://localhost:9090/marathon/PhotoLoader?photo\u003ddefault.png",
+      "data": "",
+      "method": "GET",
+      "headers": "Sec-Fetch-Dest: image\r\nSec-Fetch-Mode: no-cors\r\nSec-Fetch-Site: same-origin\r\nPriority: u\u003d5\r\n",
+      "response": {
+        "url": "http://localhost:9090/marathon/PhotoLoader?photo\u003ddefault.png",
+        "headers": "HTTP/1.1 200 OK\r\nServer: nginx/1.27.2\r\nDate: Sat, 02 Nov 2024 16:44:15 GMT\r\nConnection: keep-alive\r\ncontent-length: 13728\r\n\r\n",
+        "body": "",
+        "statusCode": 200,
+        "responseTimeInMs": 27,
+        "elementType": "ZestResponse"
+      },
+      "assertions": [],
+      "followRedirects": false,
+      "timestamp": 1730565855222,
+      "cookies": [],
+      "index": 15,
+      "enabled": true,
+      "elementType": "ZestRequest"
+    },
+    {
+      "url": "http://localhost:9090/marathon/secured/updateRunnerProfile.page",
+      "data": "username\u003dtest\u0026firstname\u003dTest\u0026lastname\u003dTest\u0026street\u003dTeststr.+123a\u0026zip\u003d12345\u0026city\u003dTest\u0026dateOfBirth\u003d01.01.1970\u0026id\u003d45\u0026state\u003dPG1hcC8%2B",
+      "method": "POST",
+      "headers": "Content-Type: application/x-www-form-urlencoded\r\nContent-Length: 129\r\nOrigin: http://localhost:9090\r\nUpgrade-Insecure-Requests: 1\r\nSec-Fetch-Dest: document\r\nSec-Fetch-Mode: navigate\r\nSec-Fetch-Site: same-origin\r\nSec-Fetch-User: ?1\r\nPriority: u\u003d0, i\r\n",
+      "response": {
+        "url": "http://localhost:9090/marathon/secured/updateRunnerProfile.page",
+        "headers": "HTTP/1.1 200 OK\r\nServer: nginx/1.27.2\r\nDate: Sat, 02 Nov 2024 16:44:17 GMT\r\nContent-Type: text/html;charset\u003dISO-8859-1\r\nContent-Length: 5575\r\nConnection: keep-alive\r\n\r\n",
+        "body": "",
+        "statusCode": 200,
+        "responseTimeInMs": 67,
+        "elementType": "ZestResponse"
+      },
+      "assertions": [],
+      "followRedirects": false,
+      "timestamp": 1730565857648,
+      "cookies": [],
+      "index": 16,
+      "enabled": true,
+      "elementType": "ZestRequest"
+    },
+    {
+      "url": "http://localhost:9090/marathon/PhotoLoader?photo\u003ddefault.png",
+      "data": "",
+      "method": "GET",
+      "headers": "Sec-Fetch-Dest: image\r\nSec-Fetch-Mode: no-cors\r\nSec-Fetch-Site: same-origin\r\nPriority: u\u003d5\r\n",
+      "response": {
+        "url": "http://localhost:9090/marathon/PhotoLoader?photo\u003ddefault.png",
+        "headers": "HTTP/1.1 200 OK\r\nServer: nginx/1.27.2\r\nDate: Sat, 02 Nov 2024 16:44:17 GMT\r\nConnection: keep-alive\r\ncontent-length: 13728\r\n\r\n",
+        "body": "",
+        "statusCode": 200,
+        "responseTimeInMs": 23,
+        "elementType": "ZestResponse"
+      },
+      "assertions": [],
+      "followRedirects": false,
+      "timestamp": 1730565857736,
+      "cookies": [],
+      "index": 17,
+      "enabled": true,
+      "elementType": "ZestRequest"
+    },
+    {
+      "url": "http://localhost:9090/marathon/Permalink?act\u003d/marathon/showRunner.page%3frunner%3d45",
+      "data": "",
+      "method": "GET",
+      "headers": "Upgrade-Insecure-Requests: 1\r\nSec-Fetch-Dest: document\r\nSec-Fetch-Mode: navigate\r\nSec-Fetch-Site: same-origin\r\nSec-Fetch-User: ?1\r\nPriority: u\u003d0, i\r\n",
+      "response": {
+        "url": "http://localhost:9090/marathon/Permalink?act\u003d/marathon/showRunner.page%3frunner%3d45",
+        "headers": "HTTP/1.1 302 Found\r\nServer: nginx/1.27.2\r\nDate: Sat, 02 Nov 2024 16:44:25 GMT\r\nContent-Length: 0\r\nLocation: http://localhost:9090/marathon/showRunner.page?runner\u003d45\r\nConnection: keep-alive\r\n\r\n",
+        "body": "",
+        "statusCode": 302,
+        "responseTimeInMs": 41,
+        "elementType": "ZestResponse"
+      },
+      "assertions": [],
+      "followRedirects": false,
+      "timestamp": 1730565865270,
+      "cookies": [],
+      "index": 18,
+      "enabled": true,
+      "elementType": "ZestRequest"
+    },
+    {
+      "url": "http://localhost:9090/marathon/showRunner.page?runner\u003d45",
+      "data": "",
+      "method": "GET",
+      "headers": "Upgrade-Insecure-Requests: 1\r\nSec-Fetch-Dest: document\r\nSec-Fetch-Mode: navigate\r\nSec-Fetch-Site: same-origin\r\nSec-Fetch-User: ?1\r\nPriority: u\u003d0, i\r\n",
+      "response": {
+        "url": "http://localhost:9090/marathon/showRunner.page?runner\u003d45",
+        "headers": "HTTP/1.1 200 OK\r\nServer: nginx/1.27.2\r\nDate: Sat, 02 Nov 2024 16:44:25 GMT\r\nContent-Type: text/html;charset\u003dISO-8859-1\r\nContent-Length: 2348\r\nConnection: keep-alive\r\n\r\n",
+        "body": "",
+        "statusCode": 200,
+        "responseTimeInMs": 15,
+        "elementType": "ZestResponse"
+      },
+      "assertions": [],
+      "followRedirects": false,
+      "timestamp": 1730565865314,
+      "cookies": [],
+      "index": 19,
+      "enabled": true,
+      "elementType": "ZestRequest"
+    }
+  ],
+  "authentication": [],
+  "index": 0,
+  "enabled": true,
+  "elementType": "ZestScript"
+}
