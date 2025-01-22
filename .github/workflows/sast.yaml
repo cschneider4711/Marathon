@@ -1,0 +1,40 @@
+name: SAST Scans
+
+on:
+  #push:
+  workflow_dispatch: # to allow to run manually
+
+
+
+jobs:
+
+
+  SAST-Scan:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout Sources
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: 8
+          distribution: 'temurin'
+
+      - name: Setup Maven Dependency Cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      - name: Build with Maven & Run SpotBugs
+        run: cd marathon || :; mvn clean install -DskipTests com.github.spotbugs:spotbugs-maven-plugin:3.1.12:spotbugs
+
+      - name: Inspect SpotBugs Report
+        uses: jwgmeligmeyling/spotbugs-github-action@master
+        with:
+          path: '**/spotbugsXml.xml'
